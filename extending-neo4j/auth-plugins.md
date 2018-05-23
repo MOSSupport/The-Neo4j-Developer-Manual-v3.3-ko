@@ -1,12 +1,15 @@
-## 6.3. Authentication and authorization plugins                  
 
-This chapter describes Neo4j support for custom-built authentication and authorization plugins.
+## 6.3. 플러그인 인증과 권한 부여 
 
-Neo4j provides authentication and authorization plugin interfaces to support real-world deployment scenarios            not covered by native users or the built-in configuration-based LDAP connector.         
+```
+이 챕터에서는 맞춤형 Neo4j 플러그인 인증과 권한 부여에 대해서 다룹니다. 
+```
 
-The SPI lives in the org.neo4j.server.security.enterprise.auth.plugin.spi package.            Custom-built plugins have access to the [**](https://neo4j.com/docs/operations-manual/3.3/configuration/file-locations/) directory in case you want to load any custom settings from a file located there.            Plugins can also write to the security event log.         
+Neo4j는 인증 및 권한 부여 플러그인 인터페이스를 제공합니다. 이를 통해 실제로 네이티브 사용자나 내장 구성 기반 LAP 커넥터가 다루지 않는 배포 시나리오를 지원합니다. 
 
-The authentication plugin implements the AuthPlugin interface with the authenticate method.            The example below shows a minimal authentication plugin that checks for Neo4j user with Neo4j password.         
+SPI는 org.neo5j.server.security.enterprise.auth.plugin.spi 패키지에 있습니다. 맞춤형 플러그인은 파일에 설정된 사용자 설정을 로드할 때 [<neo4j-home>](././configuration/file-locations.md) 디렉토리에 접근 가능합니다. 또한 플러그인은 보안 이벤트 로그에 기록될 수 있습니다. 
+
+인증 플러그인은 AuthPlugin 인터페이스를 인증 메소드로 실행합니다. 아래 예는 Neo4j 사용자와 비밀번호를 체크하는 최소 인증 플러그인을 나타냅니다. 
 
 ```
 @Override
@@ -23,7 +26,8 @@ public AuthenticationInfo authenticate( AuthToken authToken )
 }
 ```
 
-The authorization plugin implements the `AuthPlugin` interface with the authorize method.            The example below shows a minimal authorization plugin that assigns the reader role to a user named neo4j.            Note the usage of the helper class `PredefinedRole`.         
+인증 플러그인은 ```AuthPlugin``` 인터페이스를 관리 메소드로 구현합니다. 아래 예는 neo4j 사용자에게 독자 역할을 부여하는 최소 권한 부여 플러그인을 나타냅니다. 헬퍼 클래스 ```PredefinedRole```의 쓰임에 주목하십시오.
+
 
 ```
 @Override
@@ -37,7 +41,7 @@ public AuthorizationInfo authorize( Collection<PrincipalAndProvider> principals 
 }
 ```
 
-There is also a simplified combined plugin interface that provides both authentication and authorization in a single            method called authenticateAndAuthorize.            The example below shows a combined plugin verifying neo4j/neo4j credentials and returning reader role authorization:         
+단일 메소드에서 인증 및 허가 권한 부여 두 가지 모두 제공하는 단순 결합된 플러그인 인터페이스는 `authenticateAndAuthorize`라고 부릅니다. 아래 예에서 neo4j/neo4j 자격 증명을 확인하고 독자 역할 권한을 리턴하는 결합 플러그인을 확인할 수 있습니다. 
 
 ```
 @Override
@@ -54,8 +58,10 @@ public AuthInfo authenticateAndAuthorize( AuthToken authToken )
 }
 ```
 
-Neo4j provides an extendable platform as some user deployment scenarios may not be easily configured through standard LDAP            connector.            One known complexity is integrating with LDAP user directory where groups have users as a member and the not other way around.            The example below first searches for a group that the user is member of, and then maps that group to the Neo4j role by calling            the custom-built `getNeo4jRoleForGroupId` method:         
+ 
+Neo4j는 기본 LDAP 커넥터로 사용자 배포 시나리오를 쉽게 설정할 수 없으므로 확장 가능한 플랫폼을 제공합니다. 알려진 복잡도 중 하나는 그룹에 사용자가 있고 다른 방법으로는 LDAP 사용자 디렉토리와 통합된다는 것입니다. 아래 예에서는 사용자가 속해있는 그룹을 검색한 후 다음 사용자 정의 빌드 ```getNeo4jRoleForGroupId```메소드를 호출하고 해당 그룹을 Neo4j 역할에 매핑합니다.  
 
+  
 ```
 @Override
 public AuthInfo authenticateAndAuthorize( AuthToken authToken ) throws AuthenticationException
@@ -131,6 +137,7 @@ private Set<String> authorize( LdapContext ctx, String username ) throws NamingE
     }
     return roleNames;
 }
+
 ```
 
-Read more about this and other plugin examples at <https://github.com/neo4j/neo4j-example-auth-plugins>
+다른 플러그 예시는 [https://github.com/neo4j/neo4j-example-auth-plugins](https://github.com/neo4j/neo4j-example-auth-plugins)에서 확인 가능합니다. 
