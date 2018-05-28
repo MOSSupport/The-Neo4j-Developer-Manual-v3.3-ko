@@ -1,4 +1,4 @@
-## 5.2. Authentication and authorization                  
+## 5.2. 인증 및 권한 부여                
 
 
 ```
