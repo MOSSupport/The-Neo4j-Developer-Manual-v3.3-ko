@@ -12,13 +12,13 @@ Neo4j 클라이언트 어플리케이션은 데이터 베이스에 접근 엑서
 
 일반적으로 어플리케이션은 시작할 때 드라이버 인스턴스를 추가하고 종료할 때 삭제합니다. 드라이버 인스턴스를 제거하면 드라이버 내 모든 연결이 즉시 종료됩니다. 연결 풀이있는 드라이버에서는 모든 풀이 종료됩니다. 
 
-드라이버 인스턴스를 생성하려면 [연결 URI](./client-applications.md/#driver-connection-uris)와 [인증 정보](./client-applications/#driver-authentication)를 제공해야 합니다. 필요하다면 추가 설정 정보를 제공할 수도 있습니다. 이 모든 세부사항은 드라이버 생애동안 변경할 수 없습니다. 그러므로, (다양한 데이터 베이스와 작업하는 것과 같이) 다양한 설정을 할 때는 다양한 드라이버 객체를 사용해야 됩니다. 
+드라이버 인스턴스를 생성하려면 연결 URI와 인증 정보를 제공해야 합니다. 필요하다면 추가 설정 정보를 제공할 수도 있습니다. 이 모든 세부사항은 드라이버 생애동안 변경할 수 없습니다. 그러므로, (다양한 데이터 베이스와 작업하는 것과 같이) 다양한 설정을 할 때는 다양한 드라이버 객체를 사용해야 됩니다. 
 
 드라이버 생성 및 제거의 예는 다음과 같습니다. 
 
 **예시 4.6. 드라이버 수명**
 
-+ [C#](./client-applications/#tabbed-example-0-dotnet)
++ C#
 
 ```
 public class DriverLifecycleExample : IDisposable
@@ -37,7 +37,7 @@ public class DriverLifecycleExample : IDisposable
 }
 ```
 
-+ [Java](./client-applications/#tabbed-example-0-java)
++ Java
 
 ```
 public class DriverLifecycleExample implements AutoCloseable
@@ -57,7 +57,7 @@ public class DriverLifecycleExample implements AutoCloseable
 }
 ```
 
-+ [JavaScript](./client-applications/#tabbed-example-0-javascript)
++ JavaScript
 
 ```
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
@@ -79,7 +79,7 @@ session.run('CREATE (i:Item)').then(() => {
 });
 ```
 
-+ [Python](./client-applications/#tabbed-example-0-python)
++ Python
 
 ```
 class DriverLifecycleExample:
@@ -123,7 +123,7 @@ URI 연결은 그래프 데이터 베이스 및 연결 방법을 식별합니다
 
 **예시 4.7. 라우팅 컨텍스트로 라우팅 드라이버 설정**
 
-이 예는 Neo4j가 [Neo4j 작동 메뉴얼 → 다중 데이터 센터 시스템을 위한 로드 밸런싱](https://neo4j.com/docs/operations-manual/3.4/clustering/causal-clustering/multi-data-center/load-balancing/)에 설명된 서버 정책에 따라 설정되었다고 가정합니다. 특히, ```europe```라고 불리는 서버 정책을 정의했습니다. 또한, 드라이버를 지시하는 서버 ```neo01.graph.example.com```가 있습니다.
+이 예는 Neo4j가 [Neo4j 작동 메뉴얼 → 다중 데이터 센터 시스템을 위한 로드 밸런싱](https://neo4j.com/docs/operations-manual/current/clustering/multi-data-center/load-balancing/)에 설명된 서버 정책에 따라 설정되었다고 가정합니다. 특히, ```europe```라고 불리는 서버 정책을 정의했습니다. 또한, 드라이버를 지시하는 서버 ```neo01.graph.example.com```가 있습니다.
  
 이 URI는 서버 정책 ```europe```을 사용합니다:
 
@@ -131,7 +131,7 @@ URI 연결은 그래프 데이터 베이스 및 연결 방법을 식별합니다
 
 **라우팅 컨텍스트로 라우팅 드라이버를 사용하도록 서버 쪽 설정**
 
-라우팅 컨텍스트를 라우팅 드라이버와 사용하는 전제조건은 Neo4j 데이터베이스가 [인과관계 클러스터](https://neo4j.com/docs/operations-manual/3.4/clustering/causal-clustering/)에서 [Multi-data 멀티 데이터 센터 라이센싱 옵션](https://neo4j.com/docs/operations-manual/3.4/clustering/causal-clustering/multi-data-center/)가 활성화된 상태인 것 입니다. 또한, 라우팅 컨테스트는 클러스터에서 라우팅 정책으로 정의해야 합니다. 캐쥬얼 클러스터의 멀티 데이터 센터 라우팅을 설정하는 방법과 관련된 정책은 [작동 메뉴얼 → 인과관계 클러스터](https://neo4j.com/docs/operations-manual/3.4/clustering/causal-clustering/multi-data-center/load-balancing/)내용을 참조하십시오.ㅣ 
+라우팅 컨텍스트를 라우팅 드라이버와 사용하는 전제조건은 Neo4j 데이터베이스가 [인과관계 클러스터](https://neo4j.com/docs/operations-manual/current/clustering/)에서 [Multi-data 멀티 데이터 센터 라이센싱 옵션](https://neo4j.com/docs/operations-manual/current/clustering/multi-data-center/)가 활성화된 상태인 것 입니다. 또한, 라우팅 컨테스트는 클러스터에서 라우팅 정책으로 정의해야 합니다. 캐쥬얼 클러스터의 멀티 데이터 센터 라우팅을 설정하는 방법과 관련된 정책은 [작동 메뉴얼 → 인과관계 클러스터](https://neo4j.com/docs/operations-manual/current/clustering/multi-data-center/load-balancing/)내용을 참조하십시오.ㅣ 
 
 ### 4.2.3. 인증
 
@@ -145,7 +145,7 @@ URI 연결은 그래프 데이터 베이스 및 연결 방법을 식별합니다
 
 **예시 4.8. 기초 증명**
 
-+ [C#](./client-applications/#tabbed-example-1-dotnet)
++ C#
 
 ```
 public IDriver CreateDriverWithBasicAuth(string uri, string user, string password)
@@ -154,7 +154,7 @@ public IDriver CreateDriverWithBasicAuth(string uri, string user, string passwor
 }
 ```
 
-+ [Java](./client-applications/#tabbed-example-1-java)
++ Java
 
 ```
 public BasicAuthExample( String uri, String user, String password )
@@ -163,13 +163,13 @@ public BasicAuthExample( String uri, String user, String password )
 }
 ```
 
-+ [JavaScript](./client-applications/#tabbed-example-1-javascript)
++ JavaScript
 
 ```
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
 ```
 
-+ [Python](./client-applications/#tabbed-example-1-python)
++ Python
 
 ```
 def __init__(self, uri, user, password):
@@ -305,7 +305,7 @@ def __init__(self, uri, user, password):
 
 서버는 모든 연결에서 암호화할 수 있도록 수정할 수 있습니다. 자세한 내용은 [운영 메뉴얼 → Neo4j 설정](https://neo4j.com/docs/operations-manual/3.4/configuration/connectors/)을 참조하면 됩니다. 
 
-서버에서 허용하지 않는 암호화 설정으로 서버에 연결할 때 [*서비스 이용 불가능*](./client-applications/#driver-service-unavailable)상태가 됩니다. 
+서버에서 허용하지 않는 암호화 설정으로 서버에 연결할 때 *서비스 이용 불가능* 상태가 됩니다. 
 
 
 #### 4.2.4.2. 신뢰 
