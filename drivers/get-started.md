@@ -307,13 +307,13 @@ class HelloWorldExample(object):
 
 **예시 4.5. API 문서**
 
-+ [C#](./get-started/#tabbed-example-2-dotnet)
-    [https://neo4j.com/docs/api/dotnet-driver/1.6/](https://neo4j.com/docs/api/dotnet-driver/1.6/)
-+ [Java](./get-started/#tabbed-example-2-java)
-    [https://neo4j.com/docs/api/java-driver/1.5/](https://neo4j.com/docs/api/java-driver/1.5/)
-+ [JavaScript](./get-started/#tabbed-example-2-javascript)
-    [https://neo4j.com/docs/api/javascript-driver/1.6/](https://neo4j.com/docs/api/javascript-driver/1.6/)    
-+ [Python](./get-started/#tabbed-example-2-python)
-    [https://neo4j.com/docs/api/python-driver/1.6/](https://neo4j.com/docs/api/python-driver/1.6/)
++ C#
+[https://neo4j.com/docs/api/dotnet-driver/1.6/](https://neo4j.com/docs/api/dotnet-driver/1.6/)
++ Java
+[https://neo4j.com/docs/api/java-driver/1.5/](https://neo4j.com/docs/api/java-driver/1.5/)
++ JavaScript
+[https://neo4j.com/docs/api/javascript-driver/1.6/](https://neo4j.com/docs/api/javascript-driver/1.6/)    
++ Python
+[https://neo4j.com/docs/api/python-driver/1.6/](https://neo4j.com/docs/api/python-driver/1.6/)
 
  
