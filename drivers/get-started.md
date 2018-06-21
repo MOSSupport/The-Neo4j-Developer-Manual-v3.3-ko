@@ -6,7 +6,7 @@
 
 ### 4.1.1. 공식 드라이버 
 
-공식 및 커뮤니티 데이터베이스 드라이버는 Neo4j에 대한 어플리케이션을 액세스를 제공합니다. 
+공식 및 커뮤니티 데이터베이스 드라이버는 Neo4j에 대한 어플리케이션 액세스를 제공합니다. 
 공식 드라이버는 다음에서 사용됩니다:
 
 + C# — 모든 .NET 언어와 작동
@@ -14,15 +14,15 @@
 + JavaScript
 + Python
 
-드라이버 API는 도구적으로 제한되지 않습니다. 이를 통해 기본 데이터 베이스 토플로지( 단일 인스턴스, 인과 클러스터 등)는 어플리케이션 코드를 수정하지 않고도 변경할 수 있습니다. 일반적인 케이스에서는 토플로지에 변화가 있을 때만 [연결 URI](./client-applications/#driver-connection-uris)울 수정해야 합니다. 
+드라이버 API는 도구적으로 불가지론적인 것으로 의도되었습니다. 이를 통해 기본 데이터 베이스 토플로지( 단일 인스턴스, 인과 클러스터 등)는 어플리케이션 코드를 수정하지 않고도 변경할 수 있습니다. 일반적인 경우 토플로지에 변화가 있을 때만 [연결 URI](./client-applications/#driver-connection-uris)를 수정해야 합니다. 
 
-공식 드라이버는 HTTP 통신을 지원하지 않습니다. HTTP 드라이버가 필요하다면 선택할 수 있는 커뮤니티 드라이버가 많이 있습니다. 
+공식 드라이버는 HTTP 통신을 지원하지 않습니다. HTTP 드라이버가 필요할 때 선택할 수 있는 커뮤니티 드라이버가 많이 있습니다. 
 
 ### 4.1.2. 드라이버 버전 및 설치 
 
 1.x 서비스 드라이버는 Neo4j 3.x를 위해 생성되었습니다. 주요 드라이버 버전 숫자는 볼트 프로토콜 버전과 연관이 있고, 부 버전 번호는 드라이버 기능 세트를 나타내고 패치 번호는 일반적인 드라이버 패치 레벨을 정의합니다. 드라이버의 부 버전이 모든 언어에서 동시에 출시되는 동안 패치 레벨은 변할 수도 있습니다. 
 
-주요 시리즈에서 최근 출시된 드라이버를 사용할 것을 권장합니다. 이를 통해 클라이언트 어플리케이션에서 모든 서버 기능을 사용할 수 있습니다. 드라이버를 설치하거나 이용 가능한 드라이버 버전을 알아낼 때 관련 언어 배포 시스템을 사용하면 됩니다. 
+주요 시리즈에서는 최근 출시된 드라이버 사용을 권장합니다. 이를 통해 클라이언트 어플리케이션에서 모든 서버 기능을 사용할 수 있습니다. 드라이버를 설치하거나 이용 가능한 드라이버 버전을 알아낼 때 관련 언어 배포 시스템을 사용하면 됩니다. 
 
 **예시 4.1. 드라이버 얻기**
 
@@ -30,15 +30,15 @@
 
 최신 드라이버 버전은 [https://www.nuget.org/packages/Neo4j.Driver](https://www.nuget.org/packages/Neo4j.Driver)에서 확인할 수 있습니다. 
 
-Visual Studio에서 NuGet을 사용해서 최신 드라이버를 설치하려면:
+Visual Studio에 NuGet을 사용해서 최신 드라이버를 설치하려면:
 
 ```
 PM> Install-Package Neo4j.Driver
 ```
 
-드라이버의 특정 버전을 설치하기 위해서 선택할 수도 있습니다. 
+드라이버의 특정 설치 버전을 선택할 수도 있습니다. 
 
-아래는 드라이버의 특정 버전을 설치하기 위한 구문입니다.  
+아래는 드라이버의 특정 버전을 설치할 때 사용되는 구문입니다.  
 
 ```
 PM> Install-Package Neo4j.Driver -Version $DOTNET_DRIVER_VERSION
@@ -56,7 +56,7 @@ PM> Install-Package Neo4j.Driver -Version 1.6.0
 
 최신 드라이버 버전은 [maven 저장소](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.neo4j.driver%22%20AND%20a%3A%22neo4j-java-driver%22)에서 확인할 수 있습니다. 
 
-**예시 4.2. Mave을 이용해서 Java 드라이버 설치**
+**예시 4.2. Maven을 이용해서 Java 드라이버 설치**
 
 Maven을 사용할 때 *pom.xml* 파일에 다음 블록을 추가합니다. 드라이버 버전의 플레이스 홀더(placeholder)에 유의해야 합니다. 설치하려는 패치 버전을 정확히 알아야 합니다. 
 
@@ -70,7 +70,7 @@ Maven을 사용할 때 *pom.xml* 파일에 다음 블록을 추가합니다. 드
 </dependencies>
 ```
 
-아래의 예에서 드라이버 버전 1.6.1을 추가 합니다. 
+아래는 드라이버 버전 1.6.1을 추가하는 예 입니다.  
 
 ```
 <dependencies>
@@ -84,7 +84,7 @@ Maven을 사용할 때 *pom.xml* 파일에 다음 블록을 추가합니다. 드
 
 **예시 4.3. Gradle 또는 Grails용 Java 드라이버에 의존성 추가**
 
-Gradle 또는 Grails에서 의존성을 추가하는 방법입니다. 드라이버 버전의 플레이스 홀더(placeholder)에 유의해야 합니다. 설치하려는 것의 정확한 패치 버전을 확인해야 합니다. 
+아래는 Gradle 또는 Grails에 의존성을 추가하는 방법입니다. 드라이버 버전의 플레이스 홀더(placeholder)에 유의해야 합니다. 설치하는 것의 패치 버전을 정확히 확인해야 합니다. 
 
 ```
 compile 'org.neo4j.driver:neo4j-java-driver:$JAVA_DRIVER_VERSION'
@@ -100,7 +100,8 @@ compile 'org.neo4j.driver:neo4j-java-driver:1.6.1'
 
 + JavaScript
 
-드라이버의 최신 버전을 찾을 때 ```npm```을 사용합니다:
+드라이버 최신 버전을 찾을 때 ```npm```을 사용합니다:
+
 ```
 npm show neo4j-driver@* version
 ```
@@ -110,9 +111,9 @@ npm show neo4j-driver@* version
 npm install neo4j-driver
 ```
 
-또한 드라이버의 특정 버전을 설치할 때 선택할 수 있습니다. 
+드라이버의 특정 설치 버전을 선택할 수도 있습니다. 
 
-아래는 특정 드라이버 버전을 설치할 때 사용하는 문법입니다. 
+아래는 특정 드라이버 버전을 설치할 때 사용하는 구문입니다. 
 ```
 npm install neo4j-driver@$JAVASCRIPT-DRIVER-VERSION
 ```
@@ -127,21 +128,21 @@ npm install neo4j-driver@1.6.1
 
 + Python
 
-드라이버의 최신 버전은, [https://pypi.python.org/pypi/neo4j-driver](https://pypi.python.org/pypi/neo4j-driver)에서 확인할 수 있습니다. 
+드라이버의 최신 버전은 [https://pypi.python.org/pypi/neo4j-driver](https://pypi.python.org/pypi/neo4j-driver)에서 확인할 수 있습니다. 
 
 드라이버의 최신 버전을 설치하려면:
 ```
 pip install neo4j-driver
 ```
 
-또한 드라이버의 특정 버전을 설치할 때 선택할 수 있습니다. 
+드라이버의 특정 설치 버전을 선택할 수도 있습니다. 
 
-아래는 특정 드라이버 버전을 설치할 때 사용하는 문법입니다. 
+아래는 특정 드라이버 버전을 설치할 때 사용하는 구문입니다. 
 ```
 pip install neo4j-driver==$PYTHON_DRIVER_VERSION
 ```
 
-아래는 드라이버 1.6.0rc1을 설치하는 예 입니다. 
+아래는 드라이버 1.6.0을 설치하는 예 입니다. 
 ```
 pip install neo4j-driver==1.6.0rc1
 ```
@@ -150,7 +151,7 @@ pip install neo4j-driver==1.6.0rc1
 
 ### 4.1.3. 지원 언어 및 프레임워크 버전
 
-각 언어/프레임워크에는 Neo4j가 공식적으로 지원하는 다양한 버전이 있습니다. 
+각 언어/프레임워크에는 Neo4j가 지원하는 공식 버전이 많습니다. 
 
 **테이블 4.1. 1.x 드라이버 시리즈에서 지원하는 언어 및 프레임 워크**
 
@@ -168,7 +169,7 @@ pip install neo4j-driver==1.6.0rc1
 
 **예시 4.4. Hello World**
 
-+ [C#](./get-started/#tabbed-example-1-dotnet)
++ C#
 ```
 public class HelloWorldExample : IDisposable
 {
@@ -209,7 +210,7 @@ public class HelloWorldExample : IDisposable
     }
 }
 ```
-+ [Java](./get-started/#tabbed-example-1-java)
++ Java
 
 ```
 public class HelloWorldExample implements AutoCloseable
@@ -257,7 +258,7 @@ public class HelloWorldExample implements AutoCloseable
 }
 ```
 
-+ [JavaScript](./get-started/#tabbed-example-1-javascript)
++ JavaScript
 ```
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
 const session = driver.session();
@@ -279,7 +280,7 @@ resultPromise.then(result => {
 });
 ```
 
-+ [Python](./get-started/#tabbed-example-1-python)
++ Python
 ```
 class HelloWorldExample(object):
 
@@ -307,13 +308,13 @@ class HelloWorldExample(object):
 
 **예시 4.5. API 문서**
 
-+ [C#](./get-started/#tabbed-example-2-dotnet)
++ C#
     [https://neo4j.com/docs/api/dotnet-driver/1.6/](https://neo4j.com/docs/api/dotnet-driver/1.6/)
-+ [Java](./get-started/#tabbed-example-2-java)
++ Java
     [https://neo4j.com/docs/api/java-driver/1.5/](https://neo4j.com/docs/api/java-driver/1.5/)
-+ [JavaScript](./get-started/#tabbed-example-2-javascript)
++ JavaScript
     [https://neo4j.com/docs/api/javascript-driver/1.6/](https://neo4j.com/docs/api/javascript-driver/1.6/)    
-+ [Python](./get-started/#tabbed-example-2-python)
++ Python
     [https://neo4j.com/docs/api/python-driver/1.6/](https://neo4j.com/docs/api/python-driver/1.6/)
 
  
