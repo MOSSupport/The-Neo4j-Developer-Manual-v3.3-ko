@@ -309,7 +309,6 @@ class HelloWorldExample(object):
 **예시 4.5. API 문서**
 
 + C#
-<<<<<<< HEAD
     [https://neo4j.com/docs/api/dotnet-driver/1.6/](https://neo4j.com/docs/api/dotnet-driver/1.6/)
 + Java
     [https://neo4j.com/docs/api/java-driver/1.5/](https://neo4j.com/docs/api/java-driver/1.5/)
