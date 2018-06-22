@@ -127,7 +127,7 @@ URI 연결은 그래프 데이터 베이스 및 연결 방법을 식별합니다
 
 **라우팅 컨텍스트로 라우팅 드라이버를 사용하도록 서버 쪽 설정**
 
-라우팅 컨텍스트의 라우팅 드라이버를 사용하는 전제조건은 Neo4j 데이터베이스가 인과관계 클러스터에서 [Multi-data 멀티 데이터 센터 라이센싱 옵션](https://neo4j.com/docs/operations-manual/3.4/clustering/multi-data-center/)가 활성화된 상태로 쓰이는 것 입니다. 또한, 라우팅 컨테스트는 클러스터에서 라우팅 클러스터로 정의되어야 합니다. 캐쥬얼 클러스터의 멀티 데이터 센터 라우팅을 설정하는 방법에 관련된 정책은, [작동 메뉴얼 → 인과관계 클러스터](https://neo4j.com/docs/operations-manual/3.4/clustering/multi-clustering/config/)을 참조하십시오.ㅣ 
+라우팅 컨텍스트의 라우팅 드라이버를 사용하는 전제조건은 Neo4j 데이터베이스가 인과관계 클러스터에서 [Multi-data 멀티 데이터 센터 라이센싱 옵션](https://neo4j.com/docs/operations-manual/3.4/clustering/multi-data-center/)가 활성화된 상태로 쓰이는 것 입니다. 또한, 라우팅 컨테스트는 클러스터에서 라우팅 클러스터로 정의되어야 합니다. 
 
 ### 4.2.3. 인증
 
