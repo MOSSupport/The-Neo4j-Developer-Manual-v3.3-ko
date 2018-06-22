@@ -1,27 +1,30 @@
 ## 5.2. Authentication and authorization                  
 
-This section describes authentication and authorization using the Neo4j HTTP API.
 
-The HTTP API supports authentication and authorization so that requests to the HTTP API must be authorized using the username            and password of a valid user.            Authentication and authorization are enabled by default.            Refer to [Operations Manual → Enabling authentication and authorization](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/enable/) for a description on how to enable and disable authentication and authorization.         
+```
+이 섹션에서는 Neo4j HTTP API를 사용하여 인증 및 권한 부여하는 방법에 대해서 알아봅니다.
+```
 
-When Neo4j is first installed you can authenticate with the default user `neo4j` and the default password `neo4j`.            The default password must be changed before access to resources will be permitted.            This is done either using Neo4j Browser or via direct HTTP calls (see [Section 5.2.2, “User status and password changing”](https://neo4j.com/docs/developer-manual/3.3/http-api/authentication/#http-api-security-user-status-and-password-changing)).         
+HTTP API는 인증 및 권한 부여를 지원하므로 유효한 사용자의 이름과 비밀번호를 사용하여 HTTP API에 대한 요청을 승인해야 합니다. 인증 및 권한은 기본적으로 활성화되어 있습니다. 인증 및 권환 부여 활성화 또는 비활성화 시키는 방법과 관련된 내용은 다음을 참고하십시오. [운영 메뉴얼 → 인증 및 권한 부여](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/enable/) 
+ 
+Neo4j가 처음 설치되면 기본 사용자와 비밀번호를 각각  ```neo4j```로 인증할 수 있습니다. 리소스 접속이 허용되기 전에 기본 비밀번호를 변경해야 합니다. 이것은 Neo4j 브라우저나 HTTP를 직접 호출함으로서 변경가능합니다. 관련 내용 [섹션 5.2.2, "사용자 상태와 비밀번호 변경"](http-api/authentication/#http-api-security-user-status-and-password-changing)을 참조하십시오. 
 
-### 5.2.1. Authenticating                     
+### 5.2.1. 인증                     
 
-#### 5.2.1.1. Missing authorization                        
+#### 5.2.1.1. 인증 누락                       
 
-If an Authorization header is not supplied, the server will reply with an error.
+인증 헤더가 주어지지 않았다면 서버는 에러 메시지를 띄울 것 입니다. 
 
-*Example request*
+*요청 예시*
 
--   **GET**  http://localhost:7474/db/data/                     
--   **Accept:** application/json; charset=UTF-8                     
++ **GET**  http://localhost:7474/db/data/                     
++ **Accept:** application/json; charset=UTF-8                     
 
-*Example response*
+*응답 예시*
 
--   **401:** Unauthorized                     
--   **Content-Type:** application/json; charset=UTF-8                     
--   **WWW-Authenticate:** Basic realm="Neo4j"                     
++ **401:** 승인되지 않음                   
++ **내용 유형:** application/json; charset=UTF-8                     
++ **WWW-Authenticate:** Basic realm="Neo4j"                     
 
 ```
 {
@@ -32,20 +35,22 @@ If an Authorization header is not supplied, the server will reply with an error.
 }
 ```
 
-#### 5.2.1.2. Authenticate to access the server                        
+#### 5.2.1.2. 서버 접속 인증                        
 
-Authenticate by sending a username and a password to Neo4j using HTTP Basic Auth.                  Requests should include an Authorization header, with a value of Basic <payload>,                  where "payload" is a base64 encoded string of "username:password".               
 
-*Example request*
+ 
+HTTP Basic Auth를 이용해서 Neo4j에 사용자 이름과 비밀번호를 보내 인증합니다. 요청할 때는 인증 헤더와 "payload"가 base64로 인코딩 되어있는 "username:password" 문자열 값인 <payload>을 포함해야 합니다. 
 
--   **GET**  http://localhost:7474/user/neo4j                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Authorization:** Basic bmVvNGo6c2VjcmV0                     
+*요청 예시*
 
-*Example response*
++ **GET**  http://localhost:7474/user/neo4j                     
++ **Accept:** application/json; charset=UTF-8                     
++ **Authorization:** Basic bmVvNGo6c2VjcmV0                     
 
--   **200:** OK                     
--   **Content-Type:** application/json; charset=UTF-8                     
+*응답 예시*
+
++ **200:** OK                     
++ **내용 유형:** application/json; charset=UTF-8                     
 
 ```
 {
@@ -55,21 +60,22 @@ Authenticate by sending a username and a password to Neo4j using HTTP Basic Auth
 }
 ```
 
-#### 5.2.1.3. Incorrect authentication                        
 
-If an incorrect username or password is provided, the server replies with an error.
+#### 5.2.1.3. 잘못된 인증                       
 
-*Example request*
+잘못된 사용자 이름이나 비밀번호로 접속하면 서버는 에러 메시지를 띄웁니다. 
 
--   **POST**  http://localhost:7474/db/data/                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Authorization:** Basic bmVvNGo6aW5jb3JyZWN0                     
+*요청 예시*
 
-*Example response*
++ **POST**  http://localhost:7474/db/data/                     
++ **Accept:** application/json; charset=UTF-8                     
++ **Authorization:** Basic bmVvNGo6aW5jb3JyZWN0                     
 
--   **401:** Unauthorized                     
--   **Content-Type:** application/json; charset=UTF-8                     
--   **WWW-Authenticate:** Basic realm="Neo4j"                     
+*응답 예시*
+
++ **401:** 승인되지 않음                    
++ **내용 유형:** application/json; charset=UTF-8                     
++ **WWW-Authenticate:** Basic realm="Neo4j"                     
 
 ```
 {
@@ -80,22 +86,23 @@ If an incorrect username or password is provided, the server replies with an err
 }
 ```
 
-#### 5.2.1.4. Required password changes                        
+#### 5.2.1.4. 비밀번호 변경 요청       
 
-In some cases, like the very first time Neo4j is accessed, the user will be required to choose                  a new password. The database will signal that a new password is required and deny access.               
+Neo4j가 처음 접속된 것과 같이 사용자는 새로운 비밀번호를 선택해야합니다. 데이터 베이스는 새 비밀번호가 필요하다는 알림을 보내고 엑세스를 거부할 것 입니다. 
 
-See [Section 5.2.2, “User status and password changing”](https://neo4j.com/docs/developer-manual/3.3/http-api/authentication/#http-api-security-user-status-and-password-changing) for how to set a new password.               
+새 비밀번호를 설정하는 방법은 [섹션 5.2.2, “사용자 상태와 비밀번호 변경”](수정 !!!!!!!) 을 참조하십시오. 
 
-*Example request*
+*요청 예시*
 
--   **GET**  http://localhost:7474/db/data/                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Authorization:** Basic bmVvNGo6bmVvNGo=                     
++ **GET**  http://localhost:7474/db/data/                     
++ **Accept:** application/json; charset=UTF-8                     
++ **Authorization:** Basic bmVvNGo6bmVvNGo=                     
 
-*Example response*
 
--   **403:** Forbidden                     
--   **Content-Type:** application/json; charset=UTF-8                     
+*응답 예시*
+
++ **403:** 금지                     
++ **내용 유형:** application/json; charset=UTF-8                     
 
 ```
 {
@@ -107,22 +114,23 @@ See [Section 5.2.2, “User status and password changing”](https://neo4j.com/d
 }
 ```
 
-### 5.2.2. User status and password changing                     
+### 5.2.2. 사용자 상태와 비밀번호 변경 
 
-#### 5.2.2.1. User status                        
+#### 5.2.2.1. 사용자 상태
 
-Given that you know the current password, you can ask the server for the user status.
+현재 비밀번호를 알다면 서버에 사용자 상태 확인을 요청할 수 있습니다. 
 
-*Example request*
 
--   **GET**  http://localhost:7474/user/neo4j                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Authorization:** Basic bmVvNGo6c2VjcmV0                     
+*요청 예시*
 
-*Example response*
++ **GET**  http://localhost:7474/user/neo4j                     
++ **Accept:** application/json; charset=UTF-8                     
++ **Authorization:** Basic bmVvNGo6c2VjcmV0                     
 
--   **200:** OK                     
--   **Content-Type:** application/json; charset=UTF-8                     
+*응답 예시*
+
++ **200:** OK                     
++ **내용 유형:** application/json; charset=UTF-8                     
 
 ```
 {
@@ -132,20 +140,20 @@ Given that you know the current password, you can ask the server for the user st
 }
 ```
 
-#### 5.2.2.2. User status on first access                        
+#### 5.2.2.2. 첫 접속시 사용자 상태
 
-On first access, and using the default password, the user status will indicate that the users password requires changing.
+처음 접속할 때 기본 비밀번호를 사용하면 사용자 비밀번호를 변경해야 함을 사용자 상태에 알립니다. 
 
-*Example request*
+*요청 예시*
 
--   **GET**  http://localhost:7474/user/neo4j                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Authorization:** Basic bmVvNGo6bmVvNGo=                     
++ **GET**  http://localhost:7474/user/neo4j                     
++ **Accept:** application/json; charset=UTF-8                     
++ **Authorization:** Basic bmVvNGo6bmVvNGo=                     
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json; charset=UTF-8                     
++ **200:** OK                     
++ **내용 유형:** application/json; charset=UTF-8                     
 
 ```
 {
@@ -155,16 +163,17 @@ On first access, and using the default password, the user status will indicate t
 }
 ```
 
-#### 5.2.2.3. Changing the user password                        
+#### 5.2.2.3. 사용자 비밀번호 변경
 
-Given that you know the current password, you can ask the server to change a users password. You can choose any                  password you like, as long as it is different from the current password.               
 
-*Example request*
+현재 비밀번호를 알고 있으면 서버에 새로운 사용자 비밀번호를 변경하도록 요청할 수 있습니다. 현재 비밀번호와 다른 원하는 비밀번호로 설정할 수 있습니다. 
 
--   **POST**  http://localhost:7474/user/neo4j/password                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Authorization:** Basic bmVvNGo6bmVvNGo=                     
--   **Content-Type:** application/json                     
+*요청 예시*
+
++ **POST**  http://localhost:7474/user/neo4j/password                     
++ **Accept:** application/json; charset=UTF-8                     
++ **Authorization:** Basic bmVvNGo6bmVvNGo=                     
++ **내용 유형:** application/json                     
 
 ```
 {
@@ -172,18 +181,17 @@ Given that you know the current password, you can ask the server to change a use
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
++ **200:** OK                     
 
-```
 
-```
+### 5.2.3. 인증 및 권한 부여가 거부되었을 때 액서스(access)     
 
-### 5.2.3. Access when authentication and authorization are disabled                     
+인증 및 권한 부여가 거부되었을 떄, HTTP API 요청은 ```Authorization```헤더 없이 전송될 수 있습니다.          
 
-When authentication and authorization have been disabled, HTTP API requests can be sent without an `Authorization` header.            
+### 5.2.4. 하나의 인스턴스에서 다른 인스턴스로 보안 설정 복사 
 
-### 5.2.4. Copying security configuration from one instance to another                     
+사용자 이름과 비밀번호 결합은 각 Neo4j 인스턴스에 국한됩니다. Neo4j 인스턴스를 미리 설정된 인증 및 권한으로 시작하고 싶을 때가 많습니다. 
 
-The username and password combination is local to each Neo4j instance.               In many cases you want to start a Neo4j instance with preconfigured authentication and authorization.               For instructions on how to do this, refer to [Operation Manual → Propagate users and roles](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/propagate-users-and-roles/).            
+이것을 하는 방법은[작동 메뉴얼 → 사용자와 역할 전파](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/native-user-role-management/propagate-users-and-roles)을 참조하십시오. 
