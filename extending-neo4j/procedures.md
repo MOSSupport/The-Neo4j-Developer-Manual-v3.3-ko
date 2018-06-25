@@ -1,5 +1,4 @@
 
-
 ## 6.1. 프로시저(Procedures)
 
 
@@ -25,7 +24,7 @@
 
 ### 6.1.1. 프로시저 호출
 
-저장된 프로시저를 호출할 때 사이퍼 ```call``` 절을 사용합니다.  ```CALL org.neo4j.examples.findDenseNodes(1000)```을 사용해서 호출하려면 ```findDenseNodes```프로시저명이 패키지 ```org.neo4j.examples``` 내에서 정규화된 이름이여야 합니다. ```CALL```은 사이퍼 구에서 유일한 절이거나 다른 절과 결합될 수 있습니다. 인수는 쿼리 내에서 제공되거나 관련 매개 변수 집합에서 직접 가져올 수 있습니다. 자세한 내용은 사이퍼 문서 [CALL 절](././cypher/clauses.md)에서 확인할 수 있습니다. 
+저장된 프로시저를 호출할 때 사이퍼 ```call``` 절을 사용합니다.  ```CALL org.neo4j.examples.findDenseNodes(1000)```을 사용해서 호출하려면 ```findDenseNodes```프로시저명이 패키지 ```org.neo4j.examples``` 내에서 정규화된 이름이여야 합니다. ```CALL```은 사이퍼 구에서 유일한 절이거나 다른 절과 결합될 수 있습니다. 인수는 쿼리 내에서 제공되거나 관련 매개 변수 집합에서 직접 가져올 수 있습니다. 자세한 내용은 사이퍼 문서 [CALL 절](/cypher/clauses.md)에서 확인할 수 있습니다. 
 
  
 ### 6.1.2. 내장 프로시저                   
@@ -38,7 +37,7 @@ Neo4j에는 여러가지 프로시저가 묶음으로 제공됩니다. 이것은
 + 관리 데이터 모니터.
 + 사용자 비밀번호 설정.
 
-하위 집합은 [운영 메뉴얼 -> 제공된 절차](././reference/procedures.md)에서 확인할 수 있습니다. ```CALL dbms.procedures()```을 실행하면 프로시저의 모든 리스트가 표시됩니다. 
+하위 집합은 [운영 메뉴얼 -> 제공된 절차](https://neo4j.com/docs/operations-manual/3.4/reference/procedures/)에서 확인할 수 있습니다. ```CALL dbms.procedures()```을 실행하면 프로시저의 모든 리스트가 표시됩니다. 
 
 
 ### 6.1.3. 사용자 정의 프로시저
@@ -243,7 +242,7 @@ public class ManualFullTextIndexTest
 
 + 아래 유형에 대해 언급할 수 있습니다:
 
-  + 프로시저에서 보낸 입출력은 [섹션 3.2.1, "값 및 유형"](././cypher/syntax/values.md)에서 지원하는 타입 중에서 하나여야 합니다. 
+  + 프로시저에서 보낸 입출력은 [섹션 3.2.1, "값 및 유형"](/cypher/syntax.md)에서 지원하는 타입 중에서 하나여야 합니다. 
   + Java에서 Cypher 유형 및 해당 항목은 아래 표에서 확인할 수 있습니다. 
   + 복합 타입은 다음을 통해서 지원됩니다:
 
