@@ -8,7 +8,7 @@
 
 HTTP API는 인증 및 권한 부여를 지원하므로 유효한 사용자의 이름과 비밀번호를 사용하여 HTTP API에 대한 요청을 승인해야 합니다. 인증 및 권한은 기본적으로 활성화되어 있습니다. 인증 및 권환 부여 활성화 또는 비활성화 시키는 방법과 관련된 내용은 다음을 참고하십시오. [운영 메뉴얼 → 인증 및 권한 부여](https://neo4j.com/docs/operations-manual/3.3/security/authentication-authorization/enable/) 
  
-Neo4j가 처음 설치되면 기본 사용자와 비밀번호를 각각  ```neo4j```로 인증할 수 있습니다. 리소스 접속이 허용되기 전에 기본 비밀번호를 변경해야 합니다. 이것은 Neo4j 브라우저나 HTTP를 직접 호출함으로서 변경가능합니다. 관련 내용 [섹션 5.2.2, "사용자 상태와 비밀번호 변경"](http-api/authentication)을 참조하십시오. 
+Neo4j가 처음 설치되면 기본 사용자와 비밀번호를 각각  ```neo4j```로 인증할 수 있습니다. 리소스 접속이 허용되기 전에 기본 비밀번호를 변경해야 합니다. 이것은 Neo4j 브라우저나 HTTP를 직접 호출함으로서 변경가능합니다. 관련 내용 [섹션 5.2.2, "사용자 상태와 비밀번호 변경"](./http-api-transactional.md)을 참조하십시오. 
 
 ### 5.2.1. 인증                     
 
@@ -66,7 +66,7 @@ HTTP Basic Auth를 이용해서 Neo4j에 사용자 이름과 비밀번호를 보
 
 *요청 예시*
 
-+ **POST**  http://localhost:7474/db/data/                     
++ **POST** localhost:7474/db/data/                     
 + **Accept:** application/json; charset=UTF-8                     
 + **권한 부여:** Basic bmVvNGo6aW5jb3JyZWN0                     
 
@@ -89,11 +89,9 @@ HTTP Basic Auth를 이용해서 Neo4j에 사용자 이름과 비밀번호를 보
 
 Neo4j가 처음 접속된 것과 같이 사용자는 새로운 비밀번호를 선택해야합니다. 데이터 베이스는 새 비밀번호가 필요하다는 알림을 보내고 엑세스를 거부할 것 입니다. 
 
-새 비밀번호를 설정하는 방법은 [섹션 5.2.2, “사용자 상태와 비밀번호 변경”](수정 !!!!!!!) 을 참조하십시오. 
-
 *요청 예시*
 
-+ **GET**  http://localhost:7474/db/data/                     
++ **GET** localhost:7474/db/data/                     
 + **Accept:** application/json; charset=UTF-8                     
 + **권한 부여:** Basic bmVvNGo6bmVvNGo=                     
 
@@ -122,7 +120,7 @@ Neo4j가 처음 접속된 것과 같이 사용자는 새로운 비밀번호를 �
 
 *요청 예시*
 
-+ **GET**  http://localhost:7474/user/neo4j                     
++ **GET** localhost:7474/user/neo4j                     
 + **Accept:** application/json; charset=UTF-8                     
 + **권한 부여:** Basic bmVvNGo6c2VjcmV0                     
 
@@ -145,7 +143,7 @@ Neo4j가 처음 접속된 것과 같이 사용자는 새로운 비밀번호를 �
 
 *요청 예시*
 
-+ **GET**  http://localhost:7474/user/neo4j                     
++ **GET** localhost:7474/user/neo4j                     
 + **Accept:** application/json; charset=UTF-8                     
 + **권한 부여:** Basic bmVvNGo6bmVvNGo=                     
 
@@ -168,7 +166,7 @@ Neo4j가 처음 접속된 것과 같이 사용자는 새로운 비밀번호를 �
 
 *요청 예시*
 
-+ **POST**  http://localhost:7474/user/neo4j/password                     
++ **POST** localhost:7474/user/neo4j/password                     
 + **Accept:** application/json; charset=UTF-8                     
 + **권한 부여:** Basic bmVvNGo6bmVvNGo=                     
 + **내용 유형:** application/json                     
