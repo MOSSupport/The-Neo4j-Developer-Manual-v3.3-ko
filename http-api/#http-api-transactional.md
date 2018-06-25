@@ -369,7 +369,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 + **POST** localhost:7474/db/data/transaction/commit
 + **Accept:** application/json; charset=UTF-8
-+ **내용 유형:**Content-Type: application/json
++ **내용 유형:** Content-Type: application/json
 
 ```
 {
