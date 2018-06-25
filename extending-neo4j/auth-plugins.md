@@ -1,8 +1,8 @@
 
-## 6.3. 플러그인 인증과 권한 부여 
+## 6.3. 플러그인 인증 및 권한 부여 
 
 ```
-이 챕터에서는 맞춤형 Neo4j 플러그인 인증과 권한 부여에 대해서 다룹니다. 
+이 챕터에서는 맞춤형 Neo4j 플러그인 인증 및 권한 부여에 대해서 다룹니다. 
 ```
 
 Neo4j는 인증 및 권한 부여 플러그인 인터페이스를 제공합니다. 이를 통해 실제로 네이티브 사용자나 내장 구성 기반 LAP 커넥터가 다루지 않는 배포 시나리오를 지원합니다. 
@@ -26,7 +26,7 @@ public AuthenticationInfo authenticate( AuthToken authToken )
 }
 ```
 
-인증 플러그인은 ```AuthPlugin``` 인터페이스를 관리 메소드로 구현합니다. 아래 예는 neo4j 사용자에게 독자 역할을 부여하는 최소 권한 부여 플러그인을 나타냅니다. 헬퍼 클래스 ```PredefinedRole```의 쓰임에 주목하십시오.
+인증 플러그인은 ```AuthPlugin``` 인터페이스를 관리 메소드로 구현합니다. 아래 예는 neo4j 사용자에게 독자 역할을 부여하는 최소 권한 부여 플러그인을 나타냅니다. 헬퍼 클래스 ```PredefinedRole``` 사용에 주목하십시오.
 
 
 ```
@@ -41,7 +41,7 @@ public AuthorizationInfo authorize( Collection<PrincipalAndProvider> principals 
 }
 ```
 
-단일 메소드에서 인증 및 허가 권한 부여 두 가지 모두 제공하는 단순 결합된 플러그인 인터페이스는 `authenticateAndAuthorize`라고 부릅니다. 아래 예에서 neo4j/neo4j 자격 증명을 확인하고 독자 역할 권한을 리턴하는 결합 플러그인을 확인할 수 있습니다. 
+단일 메소드에서 인증 및 허가 권한 부여 기능을 모두 제공하는 단순 결합 플러그인 인터페이스는 `authenticateAndAuthorize`라고 부릅니다. 아래 예에서 neo4j/neo4j 자격 증명을 확인하고 독자  권한을 리턴하는 결합 플러그인을 확인할 수 있습니다. 
 
 ```
 @Override
@@ -59,7 +59,7 @@ public AuthInfo authenticateAndAuthorize( AuthToken authToken )
 ```
 
  
-Neo4j는 기본 LDAP 커넥터로 사용자 배포 시나리오를 쉽게 설정할 수 없으므로 확장 가능한 플랫폼을 제공합니다. 알려진 복잡도 중 하나는 그룹에 사용자가 있고 다른 방법으로는 LDAP 사용자 디렉토리와 통합된다는 것입니다. 아래 예에서는 사용자가 속해있는 그룹을 검색한 후 다음 사용자 정의 빌드 ```getNeo4jRoleForGroupId```메소드를 호출하고 해당 그룹을 Neo4j 역할에 매핑합니다.  
+Neo4j는 기본 LDAP 커넥터로 사용자 배포 시나리오를 설정하도록 확장 플랫폼을 제공합니다. 알려진 복잡도 중 하나는 그룹에 사용자가 있고 다른 방법은 LDAP 사용자 디렉토리와 통합하는 것 입니다. 아래 예에서는 사용자가 속해있는 그룹을 검색하고 다음 사용자 정의 빌드 ```getNeo4jRoleForGroupId```메소드를 호출하여 해당 그룹을 Neo4j 역할에 매핑합니다.  
 
   
 ```
