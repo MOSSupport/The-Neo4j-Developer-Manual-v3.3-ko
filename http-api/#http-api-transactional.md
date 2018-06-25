@@ -33,7 +33,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/commit
++ **POST** localhost:7474/db/data/transaction/commit
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -69,7 +69,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/commit
++ **POST** localhost:7474/db/data/transaction/commit
 + **Accept** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -126,7 +126,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction
++ **POST** localhost:7474/db/data/transaction
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -147,7 +147,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 + **201:** Created
 + **내용 유형:**: application/json
-+ **위치:** http://localhost:7474/db/data/transaction/10
++ **위치:** localhost:7474/db/data/transaction/10
 
 ```
 {
@@ -179,7 +179,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
  
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/12
++ **POST** localhost:7474/db/data/transaction/12
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -225,7 +225,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
  
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/2
++ **POST** localhost:7474/db/data/transaction/2
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -257,7 +257,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/6/commit
++ **POST** localhost:7474/db/data/transaction/6/commit
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -293,7 +293,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **DELETE** http://localhost:7474/db/data/transaction/3
++ **DELETE** localhost:7474/db/data/transaction/3
 + **Accept:** application/json; charset=UTF-8
 
 *응답 예시*
@@ -315,7 +315,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/commit
++ **POST** localhost:7474/db/data/transaction/commit
 + **Accept:** application/json; charset=UTF-8
 + **내용 형식:** application/json
 
@@ -367,7 +367,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/commit
++ **POST** localhost:7474/db/data/transaction/commit
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:**Content-Type: application/json
 
@@ -492,7 +492,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/11/commit
++ **POST** localhost:7474/db/data/transaction/11/commit
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
@@ -526,7 +526,7 @@ HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 �
 
 *요청 예시*
 
-+ **POST** http://localhost:7474/db/data/transaction/9
++ **POST** localhost:7474/db/data/transaction/9
 + **Accept:** application/json; charset=UTF-8
 + **내용 유형:** application/json
 
