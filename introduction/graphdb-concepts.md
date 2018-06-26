@@ -60,7 +60,11 @@ Neo4j의 관계는 관계 유형으로 [특성 그래프 모델(property graph m
 
 위의 예는 ```Tom Hanks```가 자신을 알고 있음을 의미합니다.
 
+
 노드 관계를 따라 찾을 수 있는 것을 예제 그래프로 살펴봅니다. 
+
+
+
 ![이미지제목](https://mossupport.github.io/developer-manual/introduction/img/graphdb-simple-rels.svg)
 
 **표 1.1. 관계의 방향과 유형의 사용**
