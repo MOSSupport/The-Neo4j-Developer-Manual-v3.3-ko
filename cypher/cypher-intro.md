@@ -1,10 +1,12 @@
 # 3. Cypher
 
-###### 이 장에는 Cypher 쿼리 언어에 대한 완전하고 권위있는 문서가 포함되어 있습니다.
+```
+이 장에는 Cypher 쿼리 관련한  완전하고 권위있는 문서가 포함되어 있습니다.
+```
 
 ## 3.1. 소개
 
-간단한 소개는 [3.1.1. " Cypher는 무엇입니까?"](https://mossupport.github.io/developer-manual/cypher/cypher.html#311-cypher%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9E%85%EB%8B%88%EA%B9%8C)에서 볼 수 있습니다. 첫 발을 딛기 위해서 [2.2. "Cypher 시작하기"](https://mossupport.github.io/developer-manual/get-started/cypher.html)를 시작하십시오. 용어 사용에 대해서는 [Appendix B, 용어](https://mossupport.github.io/developer-manual/cypher/cypher/terminology.html)를 참조하시면 됩니다.
+간단한 소개는 [3.1.1. " Cypher는 무엇입니까?"](https://mossupport.github.io/developer-manual/cypher/cypher.html#311-cypher%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9E%85%EB%8B%88%EA%B9%8C)에서 볼 수 있습니다. 첫 발을 딛기 위해서 [2.2. "Cypher 시작하기"](https://mossupport.github.io/developer-manual/get-started/cypher.html)를 시작하십시오. 용어 사용에 대해서는 [Appendix B, 용어](https://neo4j.com/docs/developer-manual/3.4/terminology/)를 참조하시면 됩니다.
 
 - [Cypher는 무엇입니까?](https://mossupport.github.io/developer-manual/cypher/cypher.html#311-cypher%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9E%85%EB%8B%88%EA%B9%8C)
 - [그래프 쿼리 및 업데이트](https://mossupport.github.io/developer-manual/cypher/introduction/query-the-graph.html)
@@ -18,7 +20,7 @@ Cypher 는 그래프 저장소의 표현과 효율적인 쿼리 및 업데이트
 
 Cypher는 개발자 및 (중요하게 우리가 생각하는) 운영 전문가에게 적합한 사람적인 쿼리 언어로 설계되었습니다. 우리의 목표는 간단한 것을 쉽고 복잡한 일을 가능하게 만드는 것입니다. 쿼리 구조는 영어 산문형식과 도해법을 기반으로하며 이는 쿼리를 좀 더 이해하기 편하게 합니다. 우리는 글쓰기가 아닌 읽기를 위해 언어를 최적화하려고 노력했습니다.
 
-선언적 언어이기 때문에 Cypher는 그래프를 *검색 하는 방법* 이 아니라 그래프에서 *검색 할 내용* 을 명확하게 표현하는 데 중점을 둡니다. 이것은 Java와 같은 명령형 언어, [Gremlin](http://gremlin.tinkerpop.com/), [JRuby Neo4j bindings](https://github.com/neo4jrb/neo4j/)와 같은 스크립팅 언어와는 대조적입니다. 이 접근 방식은 쿼리 최적화를 사용자에게 부담시키지 않고 물리적 데이터베이스 구조가 변경 되었기 때문에 (새 인덱스 등) 모든 traversals를 업데이트하도록 요구하지 않고 구현 세부 사항을 만듭니다.
+선언적 언어이기 때문에 Cypher는 그래프를 *검색 하는 방법* 이 아니라 그래프에서 *검색 할 내용* 을 명확하게 표현하는 데 중점을 둡니다. 이것은 Java와 같은 명령형 언어, Gremlin, [JRuby Neo4j bindings](https://github.com/neo4jrb/neo4j/)와 같은 스크립팅 언어와는 대조적입니다. 이 접근 방식은 쿼리 최적화를 사용자에게 부담시키지 않고 물리적 데이터베이스 구조가 변경 되었기 때문에 (새 인덱스 등) 모든 traversals를 업데이트하도록 요구하지 않고 세부 구현 사항을 만듭니다.
 
 Cypher는 다양한 접근 방식에서 영감을 얻었으며 표현적인 쿼리를 위해 기존 방식을 기반으로합니다. ```WHERE``` 및 ```ORDER BY``` 와 같은 대부분의 키워드는 [SQL](http://en.wikipedia.org/wiki/SQL) 에서 영감을 받았습니다. 패턴 매칭은 [SPARQL](http://en.wikipedia.org/wiki/SPARQL) 에서 표현 접근법을 빌려 왔습니다. 콜렉션 의미 중 일부는 Haskell 및 Python과 같은 언어에서 빌려 왔습니다.
 
