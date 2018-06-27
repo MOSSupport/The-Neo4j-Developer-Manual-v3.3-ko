@@ -8,4 +8,3 @@ Neo4j 2.0은 레이블의 개념을 기반으로 하는 그래프를 위한 선�
 
 - [인덱스](https://mossupport.github.io/developer-manual/cypher/schema/index.html)
 - [제약조건](https://mossupport.github.io/developer-manual/cypher/schema/constraints.html)
-- [통계](https://mossupport.gi

@@ -1,7 +1,8 @@
+
 # 3. Cypher
 
 ```
-이 장에는 Cypher 쿼리 관련한  완전하고 권위있는 문서가 포함되어 있습니다.
+이 장에서는 Cypher 쿼리 관련 완전하고 권위있는 문서가 포함되어 있습니다.
 ```
 
 ## 3.1. 소개
@@ -13,6 +14,7 @@
 - [트랜잭션](https://mossupport.github.io/developer-manual/cypher/introduction/transactions.html)
 - [고유성](https://mossupport.github.io/developer-manual/cypher/introduction/uniqueness.html)
 - [적합성](https://mossupport.github.io/developer-manual/cypher/introduction/compatibility.html)
+
 
 ### 3.1.1. Cypher는 무엇입니까?
 
@@ -43,6 +45,8 @@ Cypher는 SQL에서 구조를 차용합니다. 다양한 절을 사용하여 쿼
 다음과 같은 예제 그래프를 상상해보십시오.
 
 그림 3.1. 예제 그래프
+
+
 ![img](https://mossupport.github.io/developer-manual/cypher/img/Example-Graph-cypher-intro.svg)
 
 예를 들어, 'John'과 발견한 친구의 친구를 모두 반환하기 전에 'John'과 'john'의 친구(직접적인 관계가 아닌)를 찾는 쿼리가 있습니다.
@@ -86,8 +90,8 @@ RETURN user.name, follower.name
 2 rows
 ```
 
-다음은 그래프를 업데이트하는데 사용되는 절의 예입니다 :
+다음은 그래프를 업데이할 때 사용하는 절 입니다 :
 
-- ```CREATE``` (또는 ```DELETE```): 노드와 관계를 생성 또는 삭제.
-- ```SET``` (또는 ```REMOVE```): `Set`을 이용해서 노드의 값의 속성 및 레이블을 지정하거나 ```REMOVE```로 제거.
+- ```CREATE``` (또는 ```DELETE```): 노드와 관계 생성 및 삭제.
+- ```SET``` (또는 ```REMOVE```): ```Set```으로 노드 값 속성 및 레이블 지정 ```REMOVE```로 제거.
 - ```MERGE```: 기존 노드와 일치하거나 새노드와 패턴을 만듭니다. 이는 고유성 제약 조건과 함께 유용합니다.
