@@ -2,21 +2,22 @@
 
 #### 읽기 절
 
-이 부분은 데이터베이스에서 데이터를 읽는 절로 구성됩니다.
+이 절은 데이터베이스에서 데이터를 읽는 절로 구성됩니다.
 
-Cypher 쿼리 내의 데이터 흐름은 키-값 쌍(쿼리의 변수와 데이터베이스에서 파생 된 값 사이의 가능한 바인딩 집합)을 가진 정렬되지 않은 일련의 맵입니다. 이 집합은 쿼리의 후속 부분에 의해 구체화되고 보강됩니다.
+Cypher 쿼리 내의 데이터 흐름은 키-값 쌍(쿼리의 변수와 데이터베이스에서 파생 된 값 사이의 가능한 바인딩 집합)을 가진 정렬되지 않은 일련의 맵입니다. 이 집합은 다음 쿼리 일부에서 구체화되고 보강됩니다.
 
 | 절                                                           | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [MATCH](https://neo4j.com/docs/developer-manual/current/cypher/clauses/match/) | 데이터베이스에서 검색 할 패턴을 지정.                        |
-| [OPTIONAL MATCH](https://neo4j.com/docs/developer-manual/current/cypher/clauses/optional-match/) | 데이터베이스에서 검색 할 패턴을 지정하며 패턴에서 빠진 부분에 대해서는 nulls를 사용. |
+| [OPTIONAL MATCH](https://neo4j.com/docs/develo녀ㅠper-manual/current/cypher/clauses/optional-match/) | 데이터베이스에서 검색 할 패턴을 지정하며 패턴에서 빠진 부분에 대해서는 nulls를 사용. |
 | [WHERE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/where/) | MATCH 또는 OPTIONAL MATCH 절의 패턴에 제약 조건을 추가하거나 WITH 절의 결과를 필터링. |
 | [START](https://neo4j.com/docs/developer-manual/current/cypher/clauses/start/) | 레거시 인덱스를 통해 시작점을 발견함.                        |
-| [Aggregation](https://neo4j.com/docs/developer-manual/current/cypher/clauses/aggregation/) | count(), sum(), avg(), max(), min(), collect() 등을 포함하는 집계 함수. DISTINCT 포함. |
+| Aggregation | count(), sum(), avg(), max(), min(), collect() 등을 포함하는 집계 함수. DISTINCT 포함. |
 | [LOAD CSV](https://neo4j.com/docs/developer-manual/current/cypher/clauses/load-csv/) | CSV 파일에서 데이터를 가져올 때 사용.                        |
+  
 
 #### 쓰기 절
-
+ 
 이 부분은 데이터베이스에 데이터를 쓰는 절로 구성됩니다.
 
 | 절                                                           | 설명                                                         |

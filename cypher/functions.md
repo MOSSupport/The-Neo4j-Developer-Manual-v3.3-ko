@@ -1,7 +1,8 @@
 ### 3.4. 함수
 
-###### 이 섹션에는 Cypher 쿼리 언어의 모든 기능에 대한 정보가 포함되어 있습니다.
-
+```
+이 섹션에는 Cypher 쿼리 언어의 모든 기능에 대한 정보가 포함되어 있습니다.
+```
 - 술어 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%A0%EC%96%B4-%ED%95%A8%EC%88%98functionspredicateshtml)]|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/)]
 - 스칼라 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%95%A8%EC%88%98functionsscalarhtml)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/scalar/)]
 - 리스트 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%95%A8%EC%88%98functionslistshtml)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/list/)]
@@ -17,19 +18,20 @@
 
 Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 
-##### [술어 함수](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/functions/predicates.html)
+
+##### 술어 함수
 
 이 함수는 주어진 인수에 대해 true 또는 false를 반환합니다.
 
 | 기능                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [all()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-all) | 조건자(predicate)가 리스트의 모든 요소에 적용되는지 여부를 테스트합니다. |
+| [all()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/predicate/#functions-all) | 조건자(predicate)가 리스트의 모든 요소에 적용되는지 여부를 테스트합니다. |
 | [any()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-any) | 술어가 목록에있는 하나 이상의 요소에 대해 보유하는지 여부를 테스트합니다. |
 | [exists()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-exists) | 그래프와 패턴이 일치하거나 노드, 관계 또는 맵에 속성이 있는 경우 true를 반환합니다. |
 | [none()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-none) | 술어가 리스트에 요소가 없는 경우 true를 리턴합니다.          |
 | [single()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-single) | 술어가 리스트의 요소 중 하나에 대해 보유하는 경우 true를 리턴합니다. |
 
-##### [스칼라 함수](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/functions/scalar.html)
+##### 스칼라 함수
 
 이 함수는 단일 값을 반환합니다.
 
@@ -52,7 +54,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [toInteger()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/scalar/#functions-tointeger) | 인수를 정수로 변환하고 결과를 반환합니다.                    |
 | [type()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/scalar/#functions-type) | 관계 타입의 표현을 반환합니다.                               |
 
-##### [집계 함수](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/functions/aggregating.html)
+##### 집계 함수
 
 이 함수는 여러 값을 인수로 사용하여 집계 된 값을 계산하여 반환합니다.
 
@@ -69,7 +71,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [stDevP()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/aggregating/#functions-stdevp) | 전체 채우기에 대해 그룹에 대해 주어진 값의 표준 편차를 구합니다. |
 | [sum()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/aggregating/#functions-sum) | 수치 열의 합계를 돌려줍니다.                                 |
 
-##### [리스트 함수](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/functions/lists.html)
+##### 리스트 함수
 
 이 함수는 다른 값 목록을 반환합니다. 리스트의 더 자세한 내용과 예제는 [3.2.8 절 "리스트"](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/syntax/lists.html) 에서 찾을 수 있습니다.
 
@@ -86,11 +88,11 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [relationships()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/list/#functions-relationships) | 경로의 모든 관계를 반환합니다.                               |
 | [tail()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/list/#functions-tail) | 리스트의 최초의 요소 이외의 모든 것을 돌려줍니다.            |
 
-##### [수학 함수](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/functions/mathematical.html)
+##### 수학 함수
 
 이 함수는 모두 숫자 식에만 적용되며 다른 값에 사용하면 오류가 반환됩니다.
 
-###### [수치 함수](https://mossupport.github.io/developer-manual/cypher/functions/functions.html)
+###### 수치 함수
 
 | 기능                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -101,7 +103,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [round()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-round) | 가장 가까운 정수로 반올림 한 숫자 식을 반환합니다.           |
 | [sign()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-sign) | 숫자의 부호를 반환합니다. 표현식이 0이면 0, 임의의 음수는 `-1` , 양수이면 `1` 을 반환합니다. |
 
-###### [로그 함수](https://mossupport.github.io/developer-manual/cypher/functions/functions.html)
+###### 로그 함수
 
 | 기능                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -111,7 +113,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [log10()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-log10) | 식의 공통 대수 (밑 10)를 반환합니다.                         |
 | [sqrt()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-sqrt) | 숫자의 제곱근을 반환합니다.                                  |
 
-###### [삼각 함수](https://mossupport.github.io/developer-manual/cypher/functions/functions.html)
+###### 삼각 함수
 
 달리 지정되지 않는 한 모든 삼각 함수는 라디안에서 작동합니다.
 
@@ -130,7 +132,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [sin()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-sin) | 표현식에서 사인(sin)을 반환합니다.                   |
 | [tan()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-tan) | 표현식에서 탄젠트(tan)을 반환합니다.                 |
 
-###### [문자열 함수](https://mossupport.github.io/developer-manual/cypher/functions/functions.html)
+###### 문자열 함수
 
 이 함수는 문자열을 조작하거나 다른 값의 문자열 표현을 작성하는 데 사용됩니다.
 
@@ -149,12 +151,12 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [toUpper()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/string/#functions-toupper) | 대문자로 된 원래 문자열을 반환합니다.                        |
 | [trim()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/string/#functions-trim) | 양쪽에서 공백을 제거한 원래 문자열을 반환합니다.             |
 
-###### [시간 함수](https://mossupport.github.io/developer-manual/cypher/functions/functions.html)
+###### 시간 함수
 
 날짜, 시간, 현지 시각, 날짜 시간, 현지날짜 시간과 지속 기간의 값을 나타냅니다. 
 
 
-###### [공간 함수](https://mossupport.github.io/developer-manual/cypher/functions/functions.html)
+###### 공간 함수
 
 이 함수는 2D 좌표계에서 점을 지정하고 두 점 사이의 측지선 거리를 계산하는 데 사용됩니다.
 
