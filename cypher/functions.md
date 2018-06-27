@@ -3,7 +3,7 @@
 ```
 이 섹션에는 Cypher 쿼리 언어의 모든 기능에 대한 정보가 포함되어 있습니다.
 ```
-- 술어 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%A0%EC%96%B4-%ED%95%A8%EC%88%98functionspredicateshtml)]
+- 술어 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%A0%EC%96%B4-%ED%95%A8%EC%88%98functionspredicateshtml)
 - 스칼라 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%95%A8%EC%88%98functionsscalarhtml)
 - 리스트 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%95%A8%EC%88%98functionslistshtml)
 - 수학 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98functionsmathematicalhtml)
@@ -14,9 +14,7 @@
 - 공간 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EA%B3%B5%EA%B0%84-%ED%95%A8%EC%88%98)
 - [사용자 정의 함수](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/user-defined-function/)
 
-관련 정보는 [3.2.5 연산자 (Operators)](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/syntax/operators.html) 에 있습니다.
-
-Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
+Cypher 함수는 대부분 입력 매개 변수가 `null` 입니다.
 
 
 ##### 술어 함수
@@ -56,7 +54,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 
 ##### 집계 함수
 
-이 함수는 여러 값을 인수로 사용하여 집계 된 값을 계산하여 반환합니다.
+이 함수는 여러 인수 값을 계산하여 반환합니다.
 
 | 함수                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -73,7 +71,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 
 ##### 리스트 함수
 
-이 함수는 다른 값 목록을 반환합니다. 리스트의 더 자세한 내용과 예제는 [3.2.8 절 "리스트"](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/syntax/lists.html) 에서 찾을 수 있습니다.
+이 함수는 다른 값 목록을 반환합니다. 
 
 | 함수                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -90,7 +88,7 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 
 ##### 수학 함수
 
-이 함수는 모두 숫자 식에만 적용되며 다른 값에 사용하면 오류가 반환됩니다.
+이 함수는 모두 숫자 식에만 적용되며 다른 값에 사용하면 오류를 반환합니다.
 
 ###### 수치 함수
 
@@ -214,12 +212,9 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | [duration.inDays()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/temporal/#functions-duration-indays) | 주어진 두 인스턴트 사이의 일 또는 주간 차이와 동일한 *Duration*을 반환합니다. |
 | [duration.inSeconds()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/temporal/#functions-duration-inseconds) | 주어진 두 인스턴트 사이의 초 차이 및 분 수 또는 시간과 같은 *Duration* 반환합니다. |
 
-
-
-
 ###### 공간 함수
 
-이 함수는 2D 좌표계에서 점을 지정하고 두 점 사이의 측지선 거리를 계산하는 데 사용됩니다.
+이 함수는 2D 좌표계에서 점을 지정하고 두 점 사이의 측지선 거리를 계산할 때 사용합니다.
 
 | 함수                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
