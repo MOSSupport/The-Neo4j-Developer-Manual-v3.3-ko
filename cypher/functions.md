@@ -96,22 +96,22 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 
 | 기능                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [abs()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-abs) | 숫자의 절대 값을 반환합니다.                                 |
-| [ceil()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-ceil) | 인수보다 크거나 같은 가장 작은 정수를 구합니다.              |
-| [floor()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-floor) | 표현식보다 작거나 같은 가장 큰 정수를 반환합니다.            |
-| [rand()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-rand) | 0 이상 1 이하의 범위의 난수를 돌려줍니다.                    |
-| [round()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-round) | 가장 가까운 정수로 반올림 한 숫자 식을 반환합니다.           |
-| [sign()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-sign) | 숫자의 부호를 반환합니다. 표현식이 0이면 0, 임의의 음수는 `-1` , 양수이면 `1` 을 반환합니다. |
+| [abs()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/) | 숫자의 절대 값을 반환합니다.                                 |
+| [ceil()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/numeric/#functions-ceil) | 인수보다 크거나 같은 가장 작은 정수를 구합니다.              |
+| [floor()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/numeric/#functions-floor) | 표현식보다 작거나 같은 가장 큰 정수를 반환합니다.            |
+| [rand()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/numeric/#functions-rand) | 0 이상 1 이하의 범위의 난수를 돌려줍니다.                    |
+| [round()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/numeric/#functions-round) | 가장 가까운 정수로 반올림 한 숫자 식을 반환합니다.           |
+| [sign()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/numeric/#functions-sign) | 숫자의 부호를 반환합니다. 표현식이 0이면 0, 임의의 음수는 `-1` , 양수이면 `1` 을 반환합니다. |
 
 ###### 로그 함수
 
 | 기능                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [e()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-e) | 자연 대수의 밑, `e`를 구합니다.                              |
-| [exp()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-exp) | `e^n` 반환합니다. 여기서 `e` 는 자연 대수의 밑이며, `n` 은 인수 표현식의 값입니다. |
-| [log()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-log) | 식의 자연 대수를 반환합니다.                                 |
-| [log10()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-log10) | 식의 공통 대수 (밑 10)를 반환합니다.                         |
-| [sqrt()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#functions-sqrt) | 숫자의 제곱근을 반환합니다.                                  |
+| [e()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/logarithmic/#functions-e) | 자연 대수의 밑, `e`를 구합니다.                              |
+| [exp()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/logarithmic/#functions-exp) | `e^n` 반환합니다. 여기서 `e` 는 자연 대수의 밑이며, `n` 은 인수 표현식의 값입니다. |
+| [log()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/logarithmic/#functions-log) | 식의 자연 대수를 반환합니다.                                 |
+| [log10()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/logarithmic/#functions-log10) | 식의 공통 대수 (밑 10)를 반환합니다.                         |
+| [sqrt()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/mathematical/logarithmic/#functions-sqrt) | 숫자의 제곱근을 반환합니다.                                  |
 
 ###### 삼각 함수
 
