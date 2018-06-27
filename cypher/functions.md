@@ -3,15 +3,15 @@
 ```
 이 섹션에는 Cypher 쿼리 언어의 모든 기능에 대한 정보가 포함되어 있습니다.
 ```
-- 술어 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%A0%EC%96%B4-%ED%95%A8%EC%88%98functionspredicateshtml)]|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/)]
-- 스칼라 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%95%A8%EC%88%98functionsscalarhtml)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/scalar/)]
-- 리스트 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%95%A8%EC%88%98functionslistshtml)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/list/)]
-- 수학 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98functionsmathematicalhtml)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/)]
-  - 수치 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%98%EC%B9%98-%ED%95%A8%EC%88%98)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#query-functions-numeric)]
-  - 로그 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A1%9C%EA%B7%B8-%ED%95%A8%EC%88%98)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#query-functions-logarithmic)]
-  - 삼각 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A1%9C%EA%B7%B8-%ED%95%A8%EC%88%98)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/mathematical/#query-functions-trigonometric)]
-- 문자열 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/string/)]
-- 공간 함수 [[요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EA%B3%B5%EA%B0%84-%ED%95%A8%EC%88%98)|[자세히](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/spatial/)]
+- 술어 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%A0%EC%96%B4-%ED%95%A8%EC%88%98functionspredicateshtml)]
+- 스칼라 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%8A%A4%EC%B9%BC%EB%9D%BC-%ED%95%A8%EC%88%98functionsscalarhtml)
+- 리스트 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%95%A8%EC%88%98functionslistshtml)
+- 수학 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%98%ED%95%99-%ED%95%A8%EC%88%98functionsmathematicalhtml)
+  - 수치 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EC%88%98%EC%B9%98-%ED%95%A8%EC%88%98)
+  - 로그 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A1%9C%EA%B7%B8-%ED%95%A8%EC%88%98)
+  - 삼각 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%A1%9C%EA%B7%B8-%ED%95%A8%EC%88%98)
+- 문자열 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A8%EC%88%98)
+- 공간 함수 [요약](https://mossupport.github.io/developer-manual/cypher/functions/functions.html#%EA%B3%B5%EA%B0%84-%ED%95%A8%EC%88%98)
 - [사용자 정의 함수](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/user-defined-function/)
 
 관련 정보는 [3.2.5 연산자 (Operators)](file:///C:/Users/NohHyunHo/OneDrive%20-%20MOS/Company/04_neo4j/manual/cypher/syntax/operators.html) 에 있습니다.
