@@ -26,10 +26,10 @@ Cypher의 대부분의 함수는 입력 매개 변수가 `null` 합니다.
 | 기능                                                         | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [all()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/predicate/#functions-all) | 조건자(predicate)가 리스트의 모든 요소에 적용되는지 여부를 테스트합니다. |
-| [any()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-any) | 술어가 목록에있는 하나 이상의 요소에 대해 보유하는지 여부를 테스트합니다. |
-| [exists()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-exists) | 그래프와 패턴이 일치하거나 노드, 관계 또는 맵에 속성이 있는 경우 true를 반환합니다. |
-| [none()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-none) | 술어가 리스트에 요소가 없는 경우 true를 리턴합니다.          |
-| [single()](https://neo4j.com/docs/developer-manual/3.1/cypher/functions/predicates/#functions-single) | 술어가 리스트의 요소 중 하나에 대해 보유하는 경우 true를 리턴합니다. |
+| [any()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/predicate/#functions-any) | 술어가 목록에있는 하나 이상의 요소에 대해 보유하는지 여부를 테스트합니다. |
+| [exists()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/predicate/#functions-exists) | 그래프와 패턴이 일치하거나 노드, 관계 또는 맵에 속성이 있는 경우 true를 반환합니다. |
+| [none()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/predicate/#functions-none) | 술어가 리스트에 요소가 없는 경우 true를 리턴합니다.          |
+| [single()](https://neo4j.com/docs/developer-manual/3.4/cypher/functions/predicate/#functions-single) | 술어가 리스트의 요소 중 하나에 대해 보유하는 경우 true를 리턴합니다. |
 
 ##### 스칼라 함수
 
