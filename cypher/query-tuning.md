@@ -16,5 +16,5 @@ Neo4j는 최대한 빨리 쿼리를 실행하기 위해 노력합니다.
 
 + [Cypher 쿼리 옵션](query-tuning/cypher-query-options.md)
 + [쿼리 프로파일링](query-tuning/how-do-i-profile-a-query.md)
-+ [기본 쿼리 튜닝 예제](https://mossupport.github.io/developer-manual/cypher/query-tuning/basic-query-tuning-example.html)
++ [기본 쿼리 튜닝 예제](query-tuning/basic-query-tuning-example.md)
 + [USING](https://mossupport.github.io/developer-manual/cypher/query-tuning/using.html)
