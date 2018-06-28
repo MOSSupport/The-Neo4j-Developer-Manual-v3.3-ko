@@ -15,6 +15,6 @@ Neo4j는 최대한 빨리 쿼리를 실행하기 위해 노력합니다.
 이 장에서 언급 된 실행 계획 운영자에 대한 자세한 내용은 [3.7. "실행 계획"](https://mossupport.github.io/developer-manual/cypher/execution-plans/execution-plans.html)을 참조하십시오.
 
 + [Cypher 쿼리 옵션](query-tuning/cypher-query-options.md)
-+ [쿼리 프로파일링](https://mossupport.github.io/developer-manual/cypher/query-tuning/how-do-i-profile-a-query.html)
++ [쿼리 프로파일링](query-tuning/how-do-i-profile-a-query.md)
 + [기본 쿼리 튜닝 예제](https://mossupport.github.io/developer-manual/cypher/query-tuning/basic-query-tuning-example.html)
 + [USING](https://mossupport.github.io/developer-manual/cypher/query-tuning/using.html)
