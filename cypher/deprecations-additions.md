@@ -58,9 +58,9 @@
 | ```CREATE UNIQUE```                                  | 절     | 제거                  | 쿼리를 실행하면, 사이퍼 3.1을 사용합니다.(규칙 플래너 사용)  |
 | ```START```                                          | 절     | 제거                  | 쿼리를 실행하면, 사이퍼 3.1을 사용합니다.(규칙 플래너 사용)  |
 | ```MATCH (n)-[rs*]-() RETURN rs```                   | 구문론 | 더 이상 사용하지 않음 | ```MATCH p=(n)-[*]-() RETURN relationships(p) AS rs```로 대체됨 |
-| ```MATCH (n)-[:A|:B|:C {foo: 'bar'}]-() RETURN n``` | 구문론 | 더 이상 사용하지 않음 | ```MATCH (n)-[:A|B|C {foo: 'bar'}]-() RETURN n```로 대체됨  |
-| ```MATCH (n)-[x:A|:B|:C]-() RETURN n```             | 구문론 | 더 이상 사용하지 않음 | ```MATCH (n)-[x:A|B|C]-() RETURN n```로 대체됨              |
-| ```MATCH (n)-[x:A|:B|:C*]-() RETURN n```            | 구문론 | 더 이상 사용하지 않음 | ```MATCH (n)-[x:A|B|C*]-() RETURN n```로 대체됨             |
+| ```MATCH (n)-[:A:B:C {foo: 'bar'}]-() RETURN n``` | 구문론 | 더 이상 사용하지 않음 | ```MATCH (n)-[:A:B:C {foo: 'bar'}]-() RETURN n```로 대체됨  |
+| ```MATCH (n)-[x:A:B:C]-() RETURN n```             | 구문론 | 더 이상 사용하지 않음 | ```MATCH (n)-[x:A:B:C]-() RETURN n```로 대체됨              |
+| ```MATCH (n)-[x:A:B:C*]-() RETURN n```            | 구문론 | 더 이상 사용하지 않음 | ```MATCH (n)-[x:A:B:C*]-() RETURN n```로 대체됨             |
 | 사용자 정의 통합 함수                                | 기능   | 추가                  |                                                              |
 | 합성 인덱스                                          | 인덱스 | 추가                  |                                                              |
 | 노드 키                                              | 인덱스 | 추가                  | Neo4j 기업용 배포판만 해당                                   |
