@@ -155,4 +155,4 @@ Runtime version 3.4
 Total database accesses: 2
 ```
 
-실행 계획은 스키마 색인을 찾는 [노드 인덱스 찾기](./execution-plans.md) 연산자를 사용합니다.   
+ 
