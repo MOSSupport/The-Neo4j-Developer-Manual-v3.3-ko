@@ -1,4 +1,18 @@
+
 ## 3.3. 절
+
+```
+이 섹션에서는 Cypher 쿼리 언어 절과 관련된 모든 정보를 다룹니다. 
+```
+
++ 읽기 절
++ 투영 절
++ 읽기 서브-절
++ 쓰기 절
++ 읽기/쓰기 절
++ 조작 설정
++ 데이터 임포트
++ 스키마 절
 
 #### 읽기 절
 
@@ -16,7 +30,40 @@ Cypher 쿼리 내의 데이터 흐름은 키-값 쌍(쿼리의 변수와 데이�
 | [LOAD CSV](https://neo4j.com/docs/developer-manual/current/cypher/clauses/load-csv/) | CSV 파일에서 데이터를 가져올 때 사용.                        |
   
 
-#### 쓰기 절
+#### 투영 절 
+
+이것은 결과 집합에서 반환할 식을 정의하는 절을 구성합니다. 반환된 표현은 ```AS```을 사용해서 지정할 수 있습니다. 
+
+| 절                                                           | 설명                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [RETURN … [AS\]](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/return/) | 쿼리 결과 설정에서 추가할 것을 정의합니다.                   |
+| [WITH … [AS\]](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/with/) | 쿼리 부분을 함께 연결하여, 시작 점이나 다음 기준으로 사용될 결과를 파이핑할 수 있습니다. |
+| [UNWIND … [AS\]](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/unwind/) | 리스트를 일련의 행으로 확장합니다.                           |
+
+
+#### 읽기 하위-절
+
+이것은 읽기 절 일부로 작동하는 하위-절을 포함합니다. 
+
+| 하위-절                                                      | 설명                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [WHERE](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/where/) | `MATCH` 또는 `OPTIONAL MATCH`  절 및 `WITH` 절 안의 패턴에 한계를 추가하여 결과를 필터링 합니다. |
+| [ORDER BY [ASC[ENDING\] \| DESC[ENDING]]](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/order-by/) | ```RETURN``` 또는 ```WITH``` 뒤 하위 절이  오름차순 (기본값) 또는 내림차순으로 출력하도록 지정합니다. |
+| [SKIP](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/skip/) | 결과의 행을 포함하여 시작할 행을 정의합니다.                 |
+| [LIMIT](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/limit/) | 결과 내 행 개수를 제한합니다.                                |
+
+#### 읽기 힌트
+ 
+이것은 쿼리를 튜닝 할 때 플래너 힌트를 지정하는 데 사용되는 절을 포함합니다. 일반적인 쿼리 튜닝과 관련된 내용은 [섹션 3.6.4, “플래너 힌트 및 키워드 사용”](./query-tuning/using.md)에서 확인할 수 있습니다. 
+
+| 힌트                                                         | 설명                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [USING INDEX](https://neo4j.com/docs/developer-manual/3.4/cypher/query-tuning/using/#query-using-index-hint) | 인덱스 힌트는 플래너가 시작 점으로 사용할 인덱스를 지정할 때 사용됩니다. |
+| [USING SCAN](https://neo4j.com/docs/developer-manual/3.4/cypher/query-tuning/using/#query-using-scan-hint) | 검색 힌트는 인덱스를 사용하는 대신 플래너가 (필터링 작업 후) 레이블을 스캔하도록 강제 실행할 때 사용됩니다. |
+| [USING JOIN](https://neo4j.com/docs/developer-manual/3.4/cypher/query-tuning/using/#query-using-join-hint) | 결합 힌트는 특정 지점에서 결합 연산을 사용하도록할 때 쓰입니다. |
+
+ 
+#### 쓰기 절 
  
 이 부분은 데이터베이스에 데이터를 쓰는 절로 구성됩니다.
 
@@ -32,15 +79,34 @@ Cypher 쿼리 내의 데이터 흐름은 키-값 쌍(쿼리의 변수와 데이�
 | [Importing CSV files with Cypher](https://neo4j.com/docs/developer-manual/current/cypher/clauses/importing-csv-files-with-cypher/) | LOAD CSV를 사용하여 CSV 파일에서 데이터를 가져 오는 방법.    |
 | [PERIODIC COMMIT](https://neo4j.com/docs/developer-manual/current/cypher/clauses/using-periodic-commit/) | PERIODIC COMMIT의 사용 방법 및 시기                          |
 
-#### 일반 절
+
+#### 읽기/쓰기 절
+
+이 구절은 데이터베이스에서 데이터를 읽거나 쓸 때 사용하는 것으로 구성됩니다.
+
+| 절                                                           | 요약                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [MERGE](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/merge/) | 그래프에 패턴이 이미 존재하거나, 생성되어야 하는지  확인합니다. |
+| --- [ON CREATE](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/merge/#query-merge-on-create-on-match) | ```MERGE```와 함께 사용되는 ```write``` 하위 절은 패턴을 작성할 때 수행할 작업을 지정합니다. |
+| --- [ON MATCH](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/merge/#query-merge-on-create-on-match) | ```MERGE```와 함께 사용되는 ```write``` 하위 절은 패턴이 존재하는 경우 수행할 작업을 지정합니다. |
+| [CALL […YIELD\]](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/call/) | 데이터베이스에서 사용되는 프로시저를 호출하고 결과를 리턴합니다. |
+| [CREATE UNIQUE](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/create-unique/) | ```MATCH```와 ```CREATE```를 섞어서 일치시키고 누락 된 것은 생성합니다. |
+
+#### 조작 설정
 
 | 절                                                           | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [RETURN](https://neo4j.com/docs/developer-manual/current/cypher/clauses/return/) | 쿼리 결과 집합에 포함 할 내용을 정의.                        |
-| [ORDER BY](https://neo4j.com/docs/developer-manual/current/cypher/clauses/order-by/) | 출력을 특정 방식으로 정렬되도록 지정하는 RETURN 또는 WITH 뒤에 오는 하위 절. |
-| [LIMIT](https://neo4j.com/docs/developer-manual/current/cypher/clauses/limit/) | 출력할 행 수를 제한.                                         |
-| [SKIP](https://neo4j.com/docs/developer-manual/current/cypher/clauses/skip/) | 어느 행부터 출력의 행에 포함할 것인지 정의.                  |
-| [WITH](https://neo4j.com/docs/developer-manual/current/cypher/clauses/with/) | 다음의 시작점 또는 기준으로 사용되도록 결과를 넘겨, 쿼리 파트가 함께 연결되게 함. |
-| [UNWIND](https://neo4j.com/docs/developer-manual/current/cypher/clauses/unwind/) | 목록을 일련의 행으로 확장.                                   |
-| [UNION](https://neo4j.com/docs/developer-manual/current/cypher/clauses/union/) | 여러 쿼리의 결과를 결합.                                     |
-| [CALL](https://neo4j.com/docs/developer-manual/current/cypher/clauses/call/) | 데이터베이스에 배포 된 프로시저를 호출.                      |
+| [UNION](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/union/) | 많은 쿼리 결과를 단일 결과 집합으로 결합합니다. 중복은 제거합니다. |
+| [UNION ALL](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/union/) | 많은 쿼리 결과를 단일 결과 집합으로 결합합니다. 중복은 유지합니다. |
+
+#### 데이터 임포트
+
+| 절                                                           | 설명                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [LOAD CSV](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/load-csv/) | CSV파일에서 데이터를 임포트할 때  사용합니다.                |
+| --- [USING PERIODIC COMMIT](https://neo4j.com/docs/developer-manual/3.4/cypher/query-tuning/using/#query-using-periodic-commit-hint) | 이 쿼리 힌트는 ```LOAD CSV```를 사용하여 많은 양의 데이터를 임포트할 때 메모리 부족 오류가 발생하지 않게할 때 사용합니다. |
+
+
+#### 스키마 절
+
+이것은 스키마를 관리할 때 사용되는 절 입니다; 자세한 내용은 [섹션 3.5, 스키마](./schema.md)을 참조하면 됩니다. 
