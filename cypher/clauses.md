@@ -66,15 +66,12 @@ Cypher 쿼리 내의 데이터 흐름은 키-값 쌍(쿼리의 변수와 데이�
 
 | 절                                                           | 설명                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [CREATE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/create/) | 노드 및 관계를 생성.                                         |
-| [MERGE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/merge/) | 그래프에 패턴이 존재하는지 확인. 패턴이 이미 있는지 생성될 필요가 있는지 여부 |
-| [SET](https://neo4j.com/docs/developer-manual/current/cypher/clauses/set/) | 노드의 레이블과 노드 및 관계의 속성을 업데이트.              |
-| [DELETE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/delete/) | 그래프 요소를 삭제. - 노드, 관계 또는 경로                   |
-| [REMOVE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/remove/) | 노드와 관계에서 속성과 레이블을 제거.                        |
+| [CREATE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/create/) | 노드 및 관계를 생성합니다.                                   |
+| [DELETE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/delete/) | 그래프 요소를 삭제. - 노드, 관계 또는 경로. 삭제할 노드에는 삭제 된 모든 관련 관계를 명시해야 합니다. |
+| [DETACH DELETE](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/delete/) | 노드 또는 노드 집합을 제거합니다. 관련된 모든 노드는 자동으로 제거됩니다. |
+| [SET](https://neo4j.com/docs/developer-manual/current/cypher/clauses/set/) | 노드의 레이블과 노드 및 관계의 속성을 업데이트합니다.        |
+| [REMOVE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/remove/) | 노드와 관계에서 속성과 레이블을 제거합니다.                  |
 | [FOREACH](https://neo4j.com/docs/developer-manual/current/cypher/clauses/foreach/) | 경로의 구성 요소든지 집계 결과든지 목록 내의 데이터를 업데이트. |
-| [CREATE UNIQUE](https://neo4j.com/docs/developer-manual/current/cypher/clauses/create-unique/) | MATCH와 CREATE의 혼합. 가능한 것을 매칭하고 빠진 것을 생성.  |
-| [Importing CSV files with Cypher](https://neo4j.com/docs/developer-manual/current/cypher/clauses/importing-csv-files-with-cypher/) | LOAD CSV를 사용하여 CSV 파일에서 데이터를 가져 오는 방법.    |
-| [PERIODIC COMMIT](https://neo4j.com/docs/developer-manual/current/cypher/clauses/using-periodic-commit/) | PERIODIC COMMIT의 사용 방법 및 시기                          |
 
 
 #### 읽기/쓰기 절
