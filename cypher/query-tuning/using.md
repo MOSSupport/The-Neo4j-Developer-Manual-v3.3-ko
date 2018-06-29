@@ -3,7 +3,8 @@
 ### 3.6.4. 플래너 힌트 및 키워드 사용 
 
 ```
-플래너 힌트는 플래너의 결정에 영향을 주고 쿼리 실행 계획을 세울 때 사용합니다. 플래너 힌트는 ```USING``` 키워드를 사용해서 쿼리에 명시됩니다. 
+플래너 힌트는 플래너의 결정에 영향을 주고 쿼리 실행 계획을 세울 때 사용합니다. 
+플래너 힌트는 ```USING``` 키워드를 사용해서 쿼리에 명시됩니다. 
 ```
  
 강제 플래너 동작은 고급 기능이여서 쿼리가 잘 수행되지 않을 수 있으므로 숙련된 개발자 또는 데이터베이스 관리자가 다루는게 좋습니다.
@@ -95,7 +96,7 @@ USING INDEX liskov:Scientist(name)
 RETURN liskov.born AS column
 ```
 
-**'Barbara Liskov'**가 태어난 년도를 반환합니다. 
+'Barbara Liskov'가 태어난 년도를 반환합니다. 
 
 **쿼리 계획**
 
@@ -146,7 +147,7 @@ USING INDEX conway:Scientist(name)
 RETURN liskov.born AS column
 ```
 
-더 나은 플랜을 사용해서 **'Barbara Liskov'**가 태어난 해를 리턴합니다. 
+더 나은 플랜을 사용해서 'Barbara Liskov'가 태어난 해를 리턴합니다. 
 
 **쿼리 계획**
 
@@ -257,7 +258,7 @@ USING JOIN ON wing
 RETURN wing.born AS column
 ```
 
-더 나은 플랜을 사용해서 **'Jeanette Wing'**가 태어난 날짜를 반환합니다.
+더 나은 플랜을 사용해서 'Jeanette Wing'가 태어난 날짜를 반환합니다.
 
 **쿼리 플랜**
 
@@ -314,7 +315,7 @@ USING JOIN ON liskov, cs
 RETURN wing.born AS column
 ```
 
-**'Jeanette Wing'**가 태어난 날짜를 반환합니다.
+'Jeanette Wing'가 태어난 날짜를 반환합니다.
 
 **쿼리 플랜**
 
@@ -371,6 +372,7 @@ CSV 파일에서 데이터를 임포트 하는 방법은[섹션 2.2.6, Cypher로
 
 ```PERIODIC COMMIT```은 열이 한계치에 도달할 때 까지 진행합니다. 그 후, 현재 트랜잭션은 커밋되고 새롭게 열린 트랜잭션으로 대체됩니다. 설정할 한계치가 없다면, 기본 값이 사용됩니다.
 
-커밋 별 열의 개수를 설정/설정하지 않는 ```USING PERIODIC COMMIT```의 예는 [섹션 3.3.20.6, “많은 양의 데이터 임포트”](./clauses.md)을 참조하면 됩니다. 
+커밋 별 열의 개수를 설정/설정하지 않는 ```USING PERIODIC COMMIT```의 예는 [섹션 3.3.20.6, “많은 양의 데이터 임포트”](/clauses.md)을 참조하면 됩니다. 
+
 
 ```PERIODIC COMMIT```을 사용하면 많은 양의 데이터를 임포트할 때 메모리 용량 초과 현상을 막을 것 입니다. 그러나, 이것은 또한 트랜잭션 고립을 깨서 필요한 곳에 쓰일 것 입니다. 
