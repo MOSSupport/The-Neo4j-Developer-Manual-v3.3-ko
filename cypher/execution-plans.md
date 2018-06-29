@@ -2,26 +2,42 @@
 ## 3.7. 실행계획
 
 ```
-이 섹션에서는 Cypher 쿼리 언어로 쿼리를 실행하기 위한 실행 계획의 일부로 사용되는 연산자에 대해 다룹니다.
+이 섹션에서는 Cypher 쿼리를 실행 계획 일부로 사용되는 연산자에 대해 다룹니다.
 ```
 
-Neo4j는 질의를 수행하는 작업을 연산자라고 하는 작은 부분으로 나눕니다. 각 연산자는 전체 쿼리의 작은 부분에 대한 책임이 있습니다. 연산자는 실행 계획이라는 패턴으로 함께 연결됩니다.
+Neo4j는 쿼리를 수행하는 작업을 작은 부분 연산자로 나눕니다. 연산자는 실행 계획이라는 패턴으로 연결됩니다.
 
 각 연산자에는 통계가 주석으로 표시됩니다.
 
 ```Rows```
-연산자가 생성한 행 수입니다. 쿼리가 프로파일링 된 경우에만 사용할 수 있습니다.
+연산자가 생성한 행 개수입니다. 쿼리가 프로파일링 되었을 때만 사용할 수 있습니다.
 
 ```EstimatedRows```
 Neo4j가 비용 기반 컴파일러를 사용했다면 연산자에 의해 생성될 예상 행 수가 표시됩니다. 컴파일러는 이 추정치를 사용하여 적절한 실행 계획을 선택합니다.
 
 ```DbHits```
-각 운영자는 Neo4j 스토리지 엔진에 데이터 검색 또는 업데이트와 같은 작업을 수행하도록 요청합니다. 데이터베이스 히트는 이 스토리지 엔진 작업의 추상 단위입니다. 쿼리의 실행 계획을 보는 방법은 [3.6.2. "쿼리 프로파일링"](https://mossupport.github.io/developer-manual/cypher/query-tuning/how-do-i-profile-a-query.html)을 참조하세요.
+각 운영자는 Neo4j 스토리지 엔진에 데이터 검색 또는 업데이트와 같은 작업을 수행하도록 요청합니다. 데이터베이스 히트는 이 스토리지 엔진 작업의 추상 단위입니다. 쿼리의 실행 계획을 보는 방법은 [3.6.2. "쿼리 프로파일링"](./query-tuning/how-do-i-profile-a-query.md)을 참조하세요.
 
-각 운영자의 작동 방식에 대한 자세한 내용은 관련 섹션을 참조하십시오. 운영자는 상위 수준 범주로 그룹화됩니다. 쿼리가 실행되는 실제 데이터베이스의 통계는 사용된 계획을 결정한다는 것을 기억하십시오. 동일한 질의가 항상 동일한 계획으로 해결된다는 보장은 없습니다.
+쿼리에서 효율적인 계획을 생성할 때, Neo4j는 데이터베이서 어떤 인덱스나 한계가 있는지와 같은 정보를 요청합니다.([섹션 3.5, “스키마”](./schema.md) 참조) 데이터베이스에서 유지되는 통계 정보는 효율적인 실행 플랜을 생성할 때도 쓰입니다. 즉, 쿼리 엔진은 이 정보를 사용해서 어떤 접근 패턴이 최선의 실행 계획을 생산할지 결정합니다.
+ 
+통게 정보는 Neo4j에서 유지됩니다.:
+
+1. 특정 라벨을 가진 노드 개수 
+2. 인덱스 별 선택성 
+3. 유형별 관계 개수 
+4. 특정 레이블이있는 노드로 끝나거나 시작하는 유형별 관계 개수 
+ 
+통계를 최신 상태로 유지하는 방법 및 쿼리 재구성 관리 구성 옵션 관련 내용은 [운영 메뉴얼 → 통계 및 실행 플랜](https://neo4j.com/docs/operations-manual/3.4/performance/statistics-execution-plans/)을 참조하십시오. 
+
+쿼리에서 실행 내역을 조회하는 방법은 [섹션 3.6.2, “쿼리 프로파일링”](./query-tuning/how-do-i-profile-a-query.md)을 참조하십시오. 
+
+For a deeper understanding of how each operator works, refer the relevant section. Please remember that the statistics of the actual database where the queries run on will decide the plan used. There is no guarantee that a specific query will always be solved with the same plan.
 
 
 
+
+- 실행 연산 플랜
+- 최단 경로 플랜
 
 ### 3.7.1. 실행 연산 플랜 확인
 
