@@ -116,3 +116,58 @@ Neo4j가 비용 기반 컴파일러를 사용했다면 연산자에 의해 생�
 | [VarLengthExpand(All)](https://neo4j.com/docs/developer-manual/3.4/cypher/execution-plans/operators/#query-plan-varlength-expand-all) | 주어진 노드에서 변수-길이 관계를 트래버스합니다.             |       |           |
 | [VarLengthExpand(Into)](https://neo4j.com/docs/developer-manual/3.4/cypher/execution-plans/operators/#query-plan-varlength-expand-into) | 두 가지 노드 사이에서 모든 변수-길이 관계를 찾습니다.        |       |           |
 | [VarLengthExpand(Pruning)](https://neo4j.com/docs/developer-manual/3.4/cypher/execution-plans/operators/#query-plan-varlength-expand-pruning) | 주어진 노드에서 변수-길이 관계를 트래버스해서 끝 노드의 고유한 값만 반환합니다. |       |           |
+
+
+### 3.7.2. DbHits (데이터베이스 히트)
+
+각 연산자는 저장소 엔진에 요청을 보내어 데이터 검색 및 업데이트와 같은 작업을 수행하도록 합니다. *데이터베이스 히트*는 이 저장소 엔진이 작업하는 추상 단위 입니다. 
+
+데이터베이스 히트를 트리거하는 모든 작업을 아래 리스트에 나열합니다.  
+ 
++ 작업 생성
+	+ 노드 생성
+	+ 관계 생성
+	+ 새 노드 라벨 생성
+	+ 세 관계 유형 생성
+	+ 같은 이름의 속성 키에 대한 새 ID 생성
+
++ 작업 삭제 
+	+ 노드 삭제
+	+ 관계 삭제
+
++ 작업 업데이트 
+	+ 노드에서 한 가지 이상 라벨 설정
+	+ 노드에서 한 가지 이상 라벨 제거
+
++ 특정-노드 작업
+	+ ID에서 노드 얻기
+	+ 노드 단위 얻기
+	+ 노드 밀집 여부 확인 
+	+ 노드의 라벨 설정 여부 확인
+	+ 노드 라벨 얻기
+	+ 노드 특성 얻기
+	+ 존재하는 노드 라벨 얻기
+	+ ID에서 라벨을 얻거나, 이름에서 ID 얻기
+
++ 특정-관계 액션
+	+ ID로 관계 얻기
+	+ 관계 특성 얻기
+	+ 존재하는 관계 유형 얻기
+	+ ID나 이름의 ID로 관계 유형 이름 얻기
+
++ 일반적인 액션
+	+ ID나 키 이름 ID로 특성 키 이름 얻기
+	+ 인덱스 검색이나 인덱스 스캔으로 노드 또는 관계 찾기
+	+ 변수-길이 확장으로 경로 찾기
+	+ 최단 경로 찾기
+	+ 값의 카운트 저장소 요청
+
++ 스키마 액션
+	+ 인덱스 추가
+	+ 인덱스 제거
+	+ 인덱스 참조 얻기
+	+ 제약 설정
+	+ 제약 제거
+
++ 프로시저 호출
++ 사용자-정의 함수 호출
