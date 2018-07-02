@@ -1,5 +1,5 @@
 
-## 3.2. Syntax
+## 3.2. 구문 
 
 ```
 이 섹션에서는 Cypher 쿼리 언어 구문에 대해 설명합니다.
@@ -13,7 +13,7 @@
   - `CASE` 표현
 - [변수](syntax/variables.md)
 - [예약된 키워드](syntax/reserved.md)
-- [변수](syntax/parameters.md)
+- [매개 변수](syntax/parameters.md)
   - 문자열 리터럴
   - 일반 표현
   - 대 소문자 구분 문자열 패턴 일치
