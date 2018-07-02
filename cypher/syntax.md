@@ -49,7 +49,7 @@
   - 경로 변수 할당
 - [리스트](syntax/lists.md)
   - 일반 리스트
-  - 리스트 비교
+  - 리스트 이해
   - 패턴 이해
 - [Maps](syntax/maps.md)
   - maps 리터럴
