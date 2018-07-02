@@ -1,14 +1,16 @@
+
 ### 3.2.5. 예약된 키워드 
 
-We provide here a listing of reserved words, grouped by the categories from which they are drawn, all of which have a special meaning in Cypher. In addition to this, we list a number of words that are reserved for future use.
+우리는 이곳에서 그룹화된 예약어 리스트를 제공합니다. 예약어는 모두 Cypher에서 특별한 의미가 있습니다.
 
-These reserved words are not permitted to be used as identifiers in the following contexts:
+아래 예약어는 다음 문맥에서 식별자로 사용할 수 없습니다. 이 외에도 예약 된 여러 단어를 나열합니다.
 
-- Variables
-- Function names
-- Parameters
 
-If any reserved keyword is escaped — i.e. is encapsulated by backticks ```, such as ``AND`` — it would become a valid identifier in the above contexts.
+- 변수
+- 함수명
+- 매개 변수 
+
+예약 키워드가 이스케이프 처리 된 경우 (즉, ```AND```와 같이 역 따옴표로 캡슐화 된 경우)  문맥에서 유효한 식별자가됩니다.
 
 #### 3.2.5.1. 절
 
