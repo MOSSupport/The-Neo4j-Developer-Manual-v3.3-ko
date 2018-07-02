@@ -1,17 +1,18 @@
 
-## 3.2. Syntax
+### 3.2.8. 코멘트
+
+쿼리에 코멘트를 추가할 때는 이중 슬래시를 사용합니다. 예시: 
 
 ```
-이 섹션에서는 Cypher 쿼리 언어 구문에 대해 설명합니다.
+MATCH (n) RETURN n 
 ```
 
-- [값 (Values)](https://mossupport.github.io/developer-manual/cypher/syntax/values.html)
-- [표현식 (Expressions)](https://mossupport.github.io/developer-manual/cypher/syntax/expressions.html)
-- [변수 (Variables)](https://mossupport.github.io/developer-manual/cypher/syntax/variables.html)
-- [매개변수 (Parameters)](https://mossupport.github.io/developer-manual/cypher/syntax/parameters.html)
-- [연산자 (Operators)](https://mossupport.github.io/developer-manual/cypher/syntax/operators.html)
-- [주석 (Comments)](https://mossupport.github.io/developer-manual/cypher/syntax/comments.html)
-- [패턴(Patterns)](https://mossupport.github.io/developer-manual/cypher/syntax/patterns.html)
-- [리스트 (Lists)](https://mossupport.github.io/developer-manual/cypher/syntax/lists.html)17000
-- [null 작업 (Working with null)](https://mossupport.github.io/developer-manual/cypher/syntax/working-with-null.html)
+```
+MATCH (n)
+//This is a whole line comment
+RETURN n
+```
 
+```
+MATCH (n) WHERE n.property = '//This is NOT a comment' RETURN n
+```
