@@ -31,10 +31,7 @@ Neo4j가 비용 기반 컴파일러를 사용했다면 연산자에 의해 생�
 
 쿼리에서 실행 내역을 조회하는 방법은 [섹션 3.6.2, “쿼리 프로파일링”](./query-tuning/how-do-i-profile-a-query.md)을 참조하십시오. 
 
-For a deeper understanding of how each operator works, refer the relevant section. Please remember that the statistics of the actual database where the queries run on will decide the plan used. There is no guarantee that a specific query will always be solved with the same plan.
-
-
-
+각 연산자가 작동하는 방법을 이해하려면, 관련 섹션을 참조하십시오. 쿼리가 실행되는 원래 데이터베이스의 통계가 사용된 계획을 결정합니다. 특정 쿼리가 항상 같은 플랜을 해결할 거라는 보장은 없습니다. 
 
 - 실행 연산 플랜
 - 최단 경로 플랜
