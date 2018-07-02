@@ -63,6 +63,6 @@
 - [```null```로 작업](syntax/working-with-null.md)
 	- Cypher에서 ```null``` 도입 
 	- ```null```와 논리 연산자 
-	- ```[\]``` 연산자 및 ```null```
+	- ```[]``` 연산자 및 ```null```
 	- ```IN``` 연산자 및 ```null```
 	- ```null```을 반환하는 표현 
