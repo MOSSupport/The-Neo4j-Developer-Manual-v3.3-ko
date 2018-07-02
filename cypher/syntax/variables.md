@@ -1,17 +1,18 @@
 
-## 3.2. Syntax
+### 3.2.4. 변수
+
+패턴 또는 쿼리 부분을 참조할 때는 이들 이름을 지정하면 됩니다. 다른 부분에 부여하는 이름을 변수라고 합니다. 
+
+예시:
 
 ```
-이 섹션에서는 Cypher 쿼리 언어 구문에 대해 설명합니다.
+MATCH (n)-->(b)
+RETURN b
 ```
 
-- [값 (Values)](https://mossupport.github.io/developer-manual/cypher/syntax/values.html)
-- [표현식 (Expressions)](https://mossupport.github.io/developer-manual/cypher/syntax/expressions.html)
-- [변수 (Variables)](https://mossupport.github.io/developer-manual/cypher/syntax/variables.html)
-- [매개변수 (Parameters)](https://mossupport.github.io/developer-manual/cypher/syntax/parameters.html)
-- [연산자 (Operators)](https://mossupport.github.io/developer-manual/cypher/syntax/operators.html)
-- [주석 (Comments)](https://mossupport.github.io/developer-manual/cypher/syntax/comments.html)
-- [패턴(Patterns)](https://mossupport.github.io/developer-manual/cypher/syntax/patterns.html)
-- [리스트 (Lists)](https://mossupport.github.io/developer-manual/cypher/syntax/lists.html)17000
-- [null 작업 (Working with null)](https://mossupport.github.io/developer-manual/cypher/syntax/working-with-null.html)
+변수는 `n`과 `b` 입니다. 
+
+변수 이름 지정과 관련된 내용은 [이곳](/naming.md)을 참조하면 됩니다. 
+
+변수는 같은 쿼리 부분에서만 볼 수 있습니다. 변수는 다음 쿼리로 이어지지 않습니다. 여러 쿼리 부분이 ```WITH```로 연결되어 있다면, 변수는 다음 부분으로 옮겨지기 위해서 ```WITH``` 절에 있어야 합니다. 더 많은 정보는 [섹션 3.3.5, “WITH”](/clauses/with.md)을 참조하면 됩니다. 
 
