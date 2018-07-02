@@ -5,8 +5,8 @@
 이 섹션에서는 Cypher 쿼리 언어 구문에 대해 설명합니다.
 ```
 
-- [값 및 종류(/syntax/values.md)
-- [명명 규칙 및 권장사항](/syntax/naming.md)
+- [값 및 종류](/syntax/values.md)
+- [명명 규칙 및 권장사항](syntax/naming.md)
 - [표현](/syntax/expressions.md)
   - 일반적인 표현
   - 문자열 참고사항
