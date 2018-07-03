@@ -25,25 +25,17 @@ Cypher는 여러 가지 데이터 유형에 1급 지원을 제공합니다.
 
 형용사 `numeric`가 문맥에서 Cypher 함수나 표현을 나타낼 때 사용되는 경우 모든 유형의 Number (정수 또는 실수)가 적용됨을 나타냅니다. 
 
-  
+일반적인 ([합성 유형](./values.md))는 저장될 수 없지만 같은 종류의 단일 유형은 속성으로 저장될 수도 있습니다 
 
-
-
-Homogeneous lists of simple types can also be stored as properties, although lists in general ([합성 유형](./values.md)) cannot be stored.                                                              
-
-같은 종류의 단일 유형은 속성으로 저장될 수도 있습니다 
-
-
- Cypher also provides pass-through support for byte arrays, which can be stored as property values. Byte arrays are *not* considered a first class data type by Cypher, so do not have a literal representation.  
-
+Cypher는 바이트 배열에 통과 지원을 제공하며, 속성 배열로 저장됩니다. 바이트 배열은 Cypher에서 1급 데이터 유형으로 고려되지 않아 리터럴 표현이 없습니다. 
 
 
 #### 3.2.1.2. 구조 유형
 
-- ✓ Can be returned from Cypher queries
-- ❏ Cannot be used as [parameters](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/parameters/)
-- ❏ Cannot be stored as properties
-- ❏ Cannot be constructed with [Cypher literals](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/expressions/)
+- ✓ Cypher 쿼리에서 반환될 수 있습니다. 
+- ❏ [변수](./parameters.md)로 사용될 수 없습니다.
+- ❏ 속성으로 저장될 수 없습니다.
+- ❏ [Cypher 리터럴](/syntax/expressions.md)로 생성할 수 없습니다.
 
 구조 유형 구성 요소:
 
@@ -57,28 +49,28 @@ Homogeneous lists of simple types can also be stored as properties, although lis
   - Map
   - Id의 시작 및 노드의 끝
 - 경로
-  - An alternating sequence of nodes and relationships
-
-노드 및 관계의 대
+  - 교대로 반복되는 노드와 관계 
 
 노드, 관계, 및 경로는 패턴 매칭의 결과를 반환 합니다. 
 
 라벨은 값이 아니지만, 패턴 구문의 한 형태입니다. 
-#### 3.2.1.3. Composite types
-
-- ✓ Can be returned from Cypher queries
-- ✓ Can be used as [parameters](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/parameters/)
-- ❏ Cannot be stored as properties
-- ✓ Can be constructed with [Cypher literals](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/expressions/)
-
-Composite types comprise:
-
-- **Lists** are heterogeneous, ordered collections of values, each of which has any property, structural or composite type.
-- **Maps** are heterogeneous, unordered collections of (키, 값) pairs, where:
-  - the key is a String
-  - the value has any property, structural or composite type
-
-Composite values can also contain `null`. 
 
 
-Special care must be taken when using `null` (see [섹션 3.2.12, “Working with `null`”](./working-with-null.md)).
+#### 3.2.1.3. 복합 유형 
+
+- ✓ Cypher 쿼리에서 반환됩니다. 
+- ❏ [변수](./parameters.md)로 사용될 수 있습니다.
+- ❏ 속성으로 저장될 수 없습니다.
+- ❏ [Cypher 리터럴](/syntax/expressions.md)로 생성할 수 있습니다.
+
+복합 유형 구성:
+
+- **리스트**는 여러 값으로 구성되고 가치있는 콜렉션이며, 각각은 속성, 구조 또는 복합 유형을 가집니다.
+- 지도는 여러 값으로 구성되고 순서가없는 (키, 값) 쌍 콜렉션입니다.
+  - 키는 문자열 값 입니다. 
+  - 값은 속성, 구조 또는 복합 유형을 가집니다.
+ 
+복합 값은 ```null```도 포함할 수 있습니다.
+ 
+ 
+```null```을 사용할 때는 특별히 주의해야 합니다. (참조 [섹션 3.2.12, “`null`와 작업”](./working-with-null.md)).
