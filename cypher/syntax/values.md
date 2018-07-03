@@ -38,35 +38,32 @@ Homogeneous lists of simple types can also be stored as properties, although lis
 
 
 
-#### 3.2.1.2. Structural types
+#### 3.2.1.2. 구조 유형
 
 - ✓ Can be returned from Cypher queries
 - ❏ Cannot be used as [parameters](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/parameters/)
 - ❏ Cannot be stored as properties
 - ❏ Cannot be constructed with [Cypher literals](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/expressions/)
 
-Structural types comprise:
+구조 유형 구성 요소:
 
-- Nodes, comprising:
+- 노드, 다음으로 구성됩니다:
   - Id
   - Label(s)
-  - Map (of properties)
-- Relationships, comprising:
+  - Map
+- 관계, 다음으로 구성됩니다:
   - Id
   - Type
-  - Map (of properties)
-  - Id of the start and end nodes
-- Paths
+  - Map
+  - Id의 시작 및 노드의 끝
+- 경로
   - An alternating sequence of nodes and relationships
 
-|      | Nodes, relationships, and paths are returned as a result of pattern matching. |
-| ---- | ------------------------------------------------------------ |
-|      |                                                              |
+노드 및 관계의 대
 
-|      | Labels are not values but are a form of pattern syntax. |
-| ---- | ------------------------------------------------------- |
-|      |                                                         |
+노드, 관계, 및 경로는 패턴 매칭의 결과를 반환 합니다. 
 
+라벨은 값이 아니지만, 패턴 구문의 한 형태입니다. 
 #### 3.2.1.3. Composite types
 
 - ✓ Can be returned from Cypher queries
