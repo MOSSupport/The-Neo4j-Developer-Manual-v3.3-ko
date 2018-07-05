@@ -367,7 +367,7 @@ RETURN aDuration, aDuration * 2, aDuration / 3
 | 1 row                   |                         |                          |
 | `P14DT13M10.000000001S` | `P28DT26M20.000000002S` | `P4DT16H4M23.333333333S` |
 
-#### 3.2.7.8. List operators
+#### 3.2.7.8. 리스트 연선자 
 
 List operators comprise:
 
@@ -379,7 +379,7 @@ List operators comprise:
 | ---- | ------------------------------------------------------------ |
 |      |                                                              |
 
-##### Concatenating two lists using `+`
+##### 두 가지 리스트 연결 : `+` 사용 
 
 **쿼리** 
 
@@ -392,7 +392,7 @@ RETURN [1,2,3,4,5]+[6,7] AS myList
 | 1 row                                  |
 | `JavaListWrapper(1, 2, 3, 4, 5, 6, 7)` |
 
-##### Using `IN` to check if a number is in a list
+##### 리스트 내 숫자 존재 여부 확인 : `IN` 사용
 
 **쿼리** 
 
@@ -472,11 +472,10 @@ The square brackets will extract the elements from the start index `1`, and up t
 
 More details on lists can be found in [Section 3.2.11.1, “Lists in general”](https://neo4j.com/docs/developer-manual/3.4/cypher/syntax/lists/#cypher-lists-general).
 
-#### 3.2.7.9. Property operators
+#### 3.2.7.9. 속성 연산자 
 
-|      | Since version 2.0, the previously supported property operators `?` and `!` have been removed. This syntax is no longer supported. Missing properties are now returned as `null`. Please use `(NOT(exists(<ident>.prop)) OR <ident>.prop=<value>)` if you really need the old behavior of the `?` operator. — Also, the use of `?` for optional relationships has been removed in favor of the newly-introduced `OPTIONAL MATCH` clause. |
-| ---- | ------------------------------------------------------------ |
-|      |                                                              |
+Since version 2.0, the previously supported property operators `?` and `!` have been removed. This syntax is no longer supported. Missing properties are now returned as `null`. Please use `(NOT(exists(<ident>.prop)) OR <ident>.prop=<value>)` if you really need the old behavior of the `?` operator. — Also, the use of `?` for optional relationships has been removed in favor of the newly-introduced `OPTIONAL MATCH` clause. 
+
 
 #### 3.2.7.10. Equality and comparison of values
 
@@ -497,7 +496,7 @@ All other combinations of types of values cannot be compared with each other. Es
 
 It is an error to compare values that cannot be compared.
 
-#### 3.2.7.11. Ordering and comparison of values
+#### 3.2.7.11. 값 순서 및 비교 
 
 The comparison operators `<=`, `<` (for ascending) and `>=`, `>` (for descending) are used to compare values for ordering. The following points give some details on how the comparison is performed.
 
@@ -520,6 +519,8 @@ The comparison operators `<=`, `<` (for ascending) and `>=`, `>` (for descending
   - [Temporal instant values](https://neo4j.com/docs/developer-manual/3.4/cypher/syntax/temporal/#cypher-temporal-instants) are comparable within the same type. An instant is considered less than another instant if it occurs before that instant in time, and it is considered greater than if it occurs after.
   - Instant values that occur at the same point in time — but that have a different time zone — are not considered equal, and must therefore be ordered in some predictable way. Cypher prescribes that, after the primary order of point in time, instant values be ordered by effective time zone offset, from west (negative offset from UTC) to east (positive offset from UTC). This has the effect that times that represent the same point in time will be ordered with the time with the earliest local time first. If two instant values represent the same point in time, and have the same time zone offset, but a different named time zone (this is possible for *DateTime* only, since *Time* only has an offset), these values are not considered equal, and ordered by the time zone identifier, alphabetically, as its third ordering component.
   - [*Duration*](https://neo4j.com/docs/developer-manual/3.4/cypher/syntax/temporal/#cypher-temporal-durations) values cannot be compared, since the length of a *day*, *month* or *year* is not known without knowing which *day*, *month* or *year* it is. Since *Duration* values are not comparable, the result of applying a comparison operator between two *Duration* values is `null`. If the type, point in time, offset, and time zone name are all equal, then the values are equal, and any difference in order is impossible to observe.
+
+  
 - **Ordering** of temporal values:
   - `ORDER BY` requires all values to be orderable.
   - Temporal instances are ordered after spatial instances and before strings.
@@ -529,7 +530,7 @@ The comparison operators `<=`, `<` (for ascending) and `>=`, `>` (for descending
     - *Duration* values are ordered by normalising all components as if all years were `365.2425` days long (`PT8765H49M12S`), all months were `30.436875` (`1/12` year) days long (`PT730H29M06S`), and all days were `24`hours long [[1\]](https://neo4j.com/docs/developer-manual/3.4/cypher/syntax/operators/#ftn.d0e7032).
 - Comparing for ordering when one argument is `null` (e.g. `null < 3` is `null`).
 
-#### 3.2.7.12. Chaining comparison operations
+#### 3.2.7.12. 비교 연산자 결합 
 
 Comparisons can be chained arbitrarily, e.g., `x < y <= z` is equivalent to `x < y AND y <= z`.
 
@@ -537,13 +538,13 @@ Formally, if `a, b, c, ..., y, z` are expressions and `op1, op2, ..., opN` are c
 
 Note that `a op1 b op2 c` does not imply any kind of comparison between `a` and `c`, so that, e.g., `x < y > z` is perfectly legal (although perhaps not elegant).
 
-The example:
+예시:
 
 ```
 MATCH (n) WHERE 21 < n.age <= 30 RETURN n
 ```
 
-is equivalent to
+이는 아래와 같습니다:
 
 ```
 MATCH (n) WHERE 21 < n.age AND n.age <= 30 RETURN n
@@ -553,16 +554,16 @@ Thus it will match all nodes where the age is between 21 and 30.
 
 This syntax extends to all equality and inequality comparisons, as well as extending to chains longer than three.
 
-For example:
+예시:
 
 ```
 a < b = c <= d <> e
 ```
 
-Is equivalent to:
+이는 아래와 같습니다:
 
 ```
 a < b AND b = c AND c <= d AND d <> e
 ```
 
-For other comparison operators, see [Section 3.2.7.4, “Comparison operators”](https://neo4j.com/docs/developer-manual/3.4/cypher/syntax/operators/#query-operators-comparison).
+ 
