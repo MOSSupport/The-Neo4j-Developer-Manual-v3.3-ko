@@ -16,15 +16,9 @@
 
 패턴을 사용해서 찾으려는 데이터 모양을 설명하면, Cypher가 데이터를 가져오는 방법을 알아낼 것 입니다. 
 
-The pattern describes the data using a form that is very similar to how one typically draws the shape of property graph data on a whiteboard: usually as circles (representing nodes) and arrows between them to represent relationships.
+패턴은 보드에 그릴 때 사용하는 하나의 일반적인 그래프 데이터 모양을 그리는 방법과 유사한 형식을 설명합니다: 일반적으로 동그라미(노드) 및 이들 사이 화살표는 관계를 나타냅니다. 
 
-
-
-
-
-
-
-Patterns appear in multiple places in Cypher: in `MATCH`, `CREATE` and `MERGE` clauses, and in pattern expressions. Each of these is described in more detail in:
+패턴은 Cypher의 다양한 곳에서 확인할 수 있습니다: ```MATCH```, ```CREATE``` 및 ```MERGE```구절과 패턴 표현. 자세한 내용은 아래에서 확인할 수 있습니다. 
 
 **섹션 3.3**
 - 매치
@@ -35,34 +29,36 @@ Patterns appear in multiple places in Cypher: in `MATCH`, `CREATE` and `MERGE` c
 
 #### 3.2.9.2. 노드 패턴  
 
-The very simplest 'shape' that can be described in a pattern is a node. A node is described using a pair of parentheses, and is typically given a name. For example:
+패턴에서 확인할 수 있는 가장 간단한 `모양`은 노드입니다. 노드는 삽입 어구 쌍을 이용해서 나타내며, 일반적으로 이름이 지정됩니다. 
 
 ```
 (a)
 ```
 
-This simple pattern describes a single node, and names that node using the variable `a`.
+이 간단한 패턴은 단일 노드를 나타내며, 변수 ```a```를 사용하는 노드 이름입니다. 
 
 #### 3.2.9.3. 관련 노드 패턴
  
+더욱 강력한 구성은 패턴이며 이것은 패턴 사이에 다양한 노드 및 관계를 설명합니다. 
 
-A more powerful construct is a pattern that describes multiple nodes and relationships between them. Cypher patterns describe relationships by employing an arrow between two nodes. For example:
+Cypher 패턴은 두 노드 사이에 화살표를 사용해서 관계를 설명합니다.
+예:
 
 ```
 (a)-->(b)
 ```
 
-This pattern describes a very simple data shape: two nodes, and a single relationship from one to the other. In this example, the two nodes are both named as `a` and `b` respectively, and the relationship is 'directed': it goes from `a` to `b`.
+이 패턴은 매우 간단한 데이터 모양을 설명합니다: 두 개의 노드 및 하나의 관계에서 다른 노드로 연결됩니다. 이 예에서, 두 가지 노드는 각각 ```a``` 및 ```b```로 이름지으며, 관계는 ```directed```입니다. : 이는 ```a```에서 ```b```로 갑니다. 
 
-This manner of describing nodes and relationships can be extended to cover an arbitrary number of nodes and the relationships between them, for example:
+노드 및 관계 설명은 노드 및 관계 사이에 있는 임의 숫자를 커버하기 위해서 확장될 수 있습니다. 예를들어:
 
 ```
 (a)-->(b)<--(c)
 ```
 
-Such a series of connected nodes and relationships is called a "path".
+연결된 일련의 노드 및 관계는 "path"라고 부릅니다. 이 패턴에서 노드 이름 지정은 나중에 패턴 또는 Cypher쿼리의 다른 위치에서 동일한 노드를 재참조할 때만 필요합니다. 
 
-Note that the naming of the nodes in these patterns is only necessary should one need to refer to the same node again, either later in the pattern or elsewhere in the Cypher query. If this is not necessary, then the name may be omitted, as follows:
+필요하지 않을 경우, 이름을 다음과 같이 생략할 수 있습니다: 
 
 ```
 (a)-->()<--(c)
@@ -70,13 +66,13 @@ Note that the naming of the nodes in these patterns is only necessary should one
 
 #### 3.2.9.4. 라벨 패턴
  
-In addition to simply describing the shape of a node in the pattern, one can also describe attributes. The most simple attribute that can be described in the pattern is a label that the node must have. For example:
+게다가, 패턴에서 노드 모양을 간단히 설명하기 위해서 속성을 설명할 수도 있습니다. 패턴에서 설명된 가장 간단한 속성은 반드시 있어야하는 라벨입니다. 예를들어:
 
 ```
 (a:User)-->(b)
 ```
 
-One can also describe a node that has multiple labels:
+여러 개의 레이블이 있는 노드를 설명할 수도 있습니다.
 
 ```
 (a:User:Admin)-->(b)
@@ -100,10 +96,7 @@ One can also describe a node that has multiple labels:
 
 패턴에 속성이 있을 경우 데이터 모양에 제약을 추가합니다. ```CREATE``` 절의 경우, 속성은 새롭게 생성된 노드 및 관계에서 설정됩니다. ```MERGE``` 절의 경우 모양에서 속성은 추가 제약으로 쓰이며, 지정된 속성은 그래프의 기존 데이터와 일치해야 합니다. 일치하는 데이터가 없을 경우, ```MERGE```는 ```CREATE``` 역할을 하고 속성은 새롭게 생성된 노드 및 관계에서 설정됩니다. 
 
-
 ```CREATE```에 제공된 패턴은 속성을 명시하기 위해 단일 매개 변수를 사용할 것 입니다: ```CREATE (node $paramName)```. Cypher은 쿼리를 컴파일할 때 속성 이름으로 매칭을 효율적으로 수행하므로, 다른 절에 사용된 패턴에서는 수행할 수 없습니다. 
-
-
 
 #### 3.2.9.6. 관계 패턴
  
@@ -127,19 +120,16 @@ One can also describe a node that has multiple labels:
 (a)-[r:REL_TYPE]->(b)
 ```
 
-라벨과 다르게 관게는 한가지 유형만 가질 수 있습니다. 
+라벨과 다르게 관게는 한가지 유형만 가질 수 있습니다. 그러나 관계가 일련의 유형 중 하나를 가질 수 있도록 일부 데이터를 설명할 때 다음과 같이 파이프 기호 '|'로 구분하여 패턴으로 나열 할 수 있습니다.
 
- But if we’d like to describe some data such that the relationship could have any one of a set of types, then they can all be listed in the pattern, separating them with the pipe symbol `|` like this:
-
- 
 
 ```
 (a)-[r:TYPE1|TYPE2]->(b)
 ```
 
-Note that this form of pattern can only be used to describe existing data (ie. when using a pattern with `MATCH` or as an expression). It will not work with `CREATE` or `MERGE`, since it’s not possible to create a relationship with multiple types.
+이 형식 패턴은 존재하는 데이터를 설명할 때만 사용합니다.(즉, ```MATCH```과 패턴을 사용하거나 표현으로 쓰임) 이것은 관계를 다양한 종류로 생성할 수 없기 때문에, ```CREATE``` 또는 ```MERGE```와 작동하지 않을 것 입니다. 
 
-As with nodes, the name of the relationship can always be omitted, as exemplified by:
+노드와 함께, 관계의 이름은 아래와 같이 생략할 수 있습니다:
 
 ```
 (a)-[:REL_TYPE]->(b)
@@ -147,55 +137,55 @@ As with nodes, the name of the relationship can always be omitted, as exemplifie
 
 #### 3.2.9.7. 변수-길이 패턴 매칭
 
-|      | Variable length pattern matching in versions 2.1.x and earlier does not enforce relationship uniqueness for patterns described within a single `MATCH` clause. This means that a query such as the following: `MATCH (a)-[r]->(b), p = (a)-[*]->(c) RETURN *, relationships(p) AS rs` may include `r` as part of the `rs` set. This behavior has changed in versions 2.2.0 and later, in such a way that `r` will be excluded from the result set, as this better adheres to the rules of relationship uniqueness as documented here [Section 3.1.4, “Uniqueness”](https://neo4j.com/docs/developer-manual/3.4/cypher/introduction/uniqueness/). If you have a query pattern that needs to retrace relationships rather than ignoring them as the relationship uniqueness rules normally dictate, you can accomplish this using multiple match clauses, as follows: `MATCH (a)-[r]->(b) MATCH p = (a)-[*]->(c) RETURN *, relationships(p)`. This will work in all versions of Neo4j that support the `MATCH` clause, namely 2.0.0 and later. |
-| ---- | ------------------------------------------------------------ |
-|      |                                                              |
+버전 2.1.x 및 이전 버전에서 변수 길이 패턴 매칭은 단일 ```MATCH``` 절에서 설명된 것과 같이 관계 
+유일성을 강요하지 않습니다. 이것은 다음 쿼리 ```MATCH (a)-[r]->(b), p = (a)-[*]->(c) RETURN *, relationships(p) AS rs```가 ```rs```의 일부로 ```r```을 포함한다는 것을 의미합니다. 이는 ```r```이 결과에서 제외되도록 버전 2.2.0와 그 이후 버전에서 바뀌었습니다. 이는 [섹션 3.1.4, “유일성”](/cypher/cypher-intro.md)와 같이 문서의 관계 고유성 규칙을 보다 잘 준수합니다. 일반적으로 관계 고유성 규칙이 지시하는대로 관계를 무시하지 않고 되돌리는 쿼리 패턴이 있을 때 다음과 같이 여러 일치 절을 사용하여 수행 할 수 있습니다.: ```MATCH (a)-[r]->(b) MATCH p = (a)-[*]->(c) RETURN *, relationships(p)```. 이것은 ```MATCH```절을 지원하는 2.0.0 및 그 이후 Neo4j의 모든 버전에서 사용됩니다.  
 
-Rather than describing a long path using a sequence of many node and relationship descriptions in a pattern, many relationships (and the intermediate nodes) can be described by specifying a length in the relationship description of a pattern. For example:
+
+긴 경로를 일련의 많은 노드 및 관계를 사용해서 설명하는 대신 패턴의 관계 설명에서 길이를 지정하여 많은 관계(및 중간 노드)를 설명할 수 있습니다. 예를들어:
 
 ```
 (a)-[*2]->(b)
 ```
 
-This describes a graph of three nodes and two relationship, all in one path (a path of length 2). This is equivalent to:
+이것은 세 가지 노드의 그래프 및 관계를 나타내며, 하나의 경로(경로 길이2)에 있습니다. 이것은 아래와 동일합니다:
 
 ```
 (a)-->()-->(b)
 ```
 
-A range of lengths can also be specified: such relationship patterns are called 'variable length relationships'. For example:
+범위 길이는 명시될 수도 있습니다: 이런 관계 패턴은 `변수 길이 관계`라고 부릅니다. 예를들어:
 
 ```
 (a)-[*3..5]->(b)
 ```
 
-This is a minimum length of 3, and a maximum of 5. It describes a graph of either 4 nodes and 3 relationships, 5 nodes and 4 relationships or 6 nodes and 5 relationships, all connected together in a single path.
+이것은 길이가 최소 3이고, 최대 5입니다. 4노드나 3관계, 5노드나 4관계 또는 6노드 및 5관계를 설명하며, 모두 단일 경로에 연결되어 있습니다. 
 
-Either bound can be omitted. For example, to describe paths of length 3 or more, use:
+어느 쪽이든 생략할 수 있습니다. 예를들어, 3개 이상의 경로 길이를 설명하려면 아래를 사용하면 됩니다.
 
 ```
 (a)-[*3..]->(b)
 ```
 
-To describe paths of length 5 or less, use:
+경로 길이 5또는 그 이하를 설명하려면:
 
 ```
 (a)-[*..5]->(b)
 ```
 
-Both bounds can be omitted, allowing paths of any length to be described:
+두 경계는 생략할 수 있으므로 길이의 경로를 설명 할 수 있습니다.
 
 ```
 (a)-[*]->(b)
 ```
 
-As a simple example, let’s take the graph and query below:
+간단한 예로, 아래 그래프 및 쿼리를 살펴봅니다. 
 
-Figure 3.3. Graph
+그림 3.3. 그래프 
 
 ![alt](https://neo4j.com/docs/developer-manual/3.4/images/Patterns-1.svg)
 
-Query. 
+**쿼리**
 
 ```
 MATCH (me)-[:KNOWS*1..2]-(remote_friend)
@@ -209,17 +199,19 @@ RETURN remote_friend.name
 | `"Dilshad"`        |
 | `"Anders"`         |
 
-This query finds data in the graph which a shape that fits the pattern: specifically a node (with the name property **'Filipa'**) and then the `KNOWS` related nodes, one or two hops away. This is a typical example of finding first and second degree friends.
 
-Note that variable length relationships cannot be used with `CREATE` and `MERGE`.
+이 쿼리는 그래프에서 패턴과 일치하는 모양 데이터를 발견합니다. 특히 노드(속성 이름 **Filipa**인)와 관련된 노드인 ```KNOWS```는 하나 또는 두 개의 홉에 떨어져 있습니다. 이는 첫 째와 두 번 째 단계의 친구를 찾는 일반적인 예시입니다. 
+
+변수 길이 관계는 ```CREATE```와 ```MERGE```와 사용할 수 없습니다. 
 
 #### 3.2.9.8. 경로 변수 할당
 
+위에 설명된 것과 같이, 연결된 노드 및 관계는 "경로"라고 부릅니다. 
 
-As described above, a series of connected nodes and relationships is called a "path". Cypher allows paths to be named using an identifer, as exemplified by:
+Cypher는 식별자를 이용해서 경로명을 지정합니다. 
 
 ```
 p = (a)-[*3..5]->(b)
 ```
 
-You can do this in `MATCH`, `CREATE` and `MERGE`, but not when using patterns as expressions.
+이것은 ```MATCH```, ```CREATE``` 및 ```MERGE```에서할 수 있지만 패턴을 표현에서 사용할 때는 그렇지 않습니다. 
