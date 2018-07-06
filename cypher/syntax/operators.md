@@ -481,7 +481,7 @@ RETURN names[1..3] AS result
 | 1 row                         |
 | `JavaListWrapper(John, Bill)` |
 
-리스트 관련 내용은 [섹션 3.2.11.1, “일반적인 리스트”](syntax/lists.md)에서 확인할 수 있습니다. 
+리스트 관련 내용은 [섹션 3.2.11.1, “일반적인 리스트”](./lists.md)에서 확인할 수 있습니다. 
 
 #### 3.2.7.9. 속성 연산자 
 
