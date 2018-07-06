@@ -283,7 +283,7 @@ RETURN word
 
 임시 연산자는 다음을 포함합니다:
 
-- [*Duration*](/cypher/temporal.md)을 [임시 인스턴스](/syntax/temporal.md) 또는 다른 *Duration*에 추가 : `+`
+- *Duration*을 임시 인스턴스 또는 다른 *Duration*에 추가 : `+`
 - *Duration*을 다른 임시 인스턴스나 다른 *Duration*에서 제거 : ```-```
 - *Duration*을 숫자와 곱하기 : ```*```
 - *Duration*을 숫자로 나누기 : ```/```
@@ -316,7 +316,7 @@ RETURN aDateTime + aDuration, aDateTime - aDuration
 | 1 row                           |                                 |
 | `1996-10-11T12:31:14.000000002` | `1972-10-11T12:31:13.999999998` |
 
-시간 순간에 적용되지 않는 [*Duration* 구성 요소](/syntax/temporal.md)는 무시됩니다. 예를 들어 *Duration*을 *Date*에 추가하면 *Duration*의 *hours*, *minutes*, *seconds* 및 *nanoseconds*는 무시됩니다. (*Time*도 비슷하게 동작) 
+시간 순간에 적용되지 않는 *Duration* 구성 요소는 무시됩니다. 예를 들어 *Duration*을 *Date*에 추가하면 *Duration*의 *hours*, *minutes*, *seconds* 및 *nanoseconds*는 무시됩니다. (*Time*도 비슷하게 동작) 
 
 **쿼리** 
 
@@ -381,7 +381,7 @@ RETURN aDuration, aDuration * 2, aDuration / 3
 - 리스트 ```l```에 ```e``` 요소가 있는지 확인: ```e IN [I]```
 - 첨자 연산자를 이용해서 리스트 내 요소 억세스 : ```[]```
 
-```null``과 관련된 ```IN``` 및 ```[]``` 연산자와 관련된 상세 정보는 [이곳](/syntax/working-with-null.md)에서 확인할 수 있습니다. 
+```null```과 관련된 ```IN``` 및 ```[]``` 연산자와 관련된 상세 정보는 [이곳](./working-with-null.md)에서 확인할 수 있습니다. 
  
 ##### 두 가지 리스트 연결 : `+` 사용 
 
