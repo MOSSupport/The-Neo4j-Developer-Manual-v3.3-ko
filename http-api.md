@@ -1,34 +1,41 @@
-# Chapter 5. HTTP API
+## 5.1. HTTP API
 
-This chapter covers the HTTP API for operating and querying Neo4j.
+```
+이 챕터에서는 Neo4j 쿼리를 조작하는 HTTP API에 대해서 알아봅니다. 
+```
 
-## 5.1. Transactional Cypher HTTP endpoint                     
+### 5.1. 트랜잭션 Cypher HTTP 앤드포인트 
+ 
+Neo4j 트랜잭션 HTTP 앤드포인트는 트랜잭션 범위 내 Cypher문을 실행할 수 있도록 합니다. 클라이언트가 커밋하거나 롤백을 클릭하기 전까지 많은 HTTP 요청에서 트랜잭션을 계속 열어둘 수 있습니다. 각 HTTP 요청에는 명령문 목록이 포함될 수 있으며 트랜잭션을 시작이나 트랜잭션 커밋을 요청할 때 편리하게 사용하도록 명령문을 포함할 수 있습니다. 
+ 
+서버는 타임아웃을 사용해서 고아 트랜잭션을 보호합니다. 타임아웃 기간 내에 주어진 트랜잭션에 요청 사항이 없다면 서버는 다시 롤백할 것 입니다. 서버 설정 내 타임아웃은 ```Operations Manual → dbms.rest.transaction.idle_timeout```을 타임아웃 전에 몇 초를 설정함으로써 구성할 수 있습니다. 기본 타임 아웃은 60초 입니다. 
 
-The Neo4j transactional HTTP endpoint allows you to execute a series of Cypher statements within the scope of a transaction.               The transaction may be kept open across multiple HTTP requests, until the client chooses to commit or roll back.               Each HTTP request can include a list of statements, and for convenience you can include statements along with a request to               begin or commit a transaction.            
++ 문자 줄 바꿈은 사이퍼 명령어 내에서 사용할 수 없습니다. 
 
-The server guards against orphaned transactions by using a timeout.               If there are no requests for a given transaction within the timeout period, the server will roll it back.               You can configure the timeout in the server configuration, by setting `Operations Manual → dbms.rest.transaction.idle_timeout` to the number of seconds before timeout.               The default timeout is 60 seconds.            
++ 오픈 트랜잭션은 HA 클러스터에서 멤버들과 공유되지 않습니다. 
+  따라서 앤드포인트를 HA 클러스터에서 사용한다면 주어진 트랜잭션에서 모든 요청이 동일한 Neo4j 인스턴스로 보내지도록 해야합니다. 
 
-| **   | Literal line breaks are not allowed inside Cypher statements.                                 Open transactions are not shared among members of an HA cluster.                                    Therefore, if you use this endpoint in an HA cluster, you must ensure that all requests for a given transaction are sent to                                    the same Neo4j instance.                                                                  Cypher queries with `USING PERIODIC COMMIT`  (see [Section 3.6.4.5, “`PERIODIC COMMIT` query hint”](https://neo4j.com/docs/developer-manual/3.3/cypher/query-tuning/using/#query-using-periodic-commit-hint)) may only be executed when creating a new transaction and immediately committing it with a single HTTP request (see [Section 5.1.2, “Begin and commit a transaction in one request”](https://neo4j.com/docs/developer-manual/3.3/http-api/#rest-api-begin-and-commit-a-transaction-in-one-request) for how to do that).                                                                  When a request fails the transaction will be rolled back.                                    By checking the result for the presence/absence of the `transaction` key you can figure out if the transaction is still open. |
-| ---- | ---------------------------------------- |
-|      |                                          |
++ ```USING PERIODIC COMMIT``` ( [섹션 3.5.4.5](/cypher/query-tuning.md) ```PERIODIC COMMIT```참조 )을 사용하는 사이퍼 쿼리는 새 트랜잭션을 생성하고 단일 HTTP 요청(섹션 5.1.2, "트랜잭션을 한 개 요청에서 시작하고 커밋"참조)으로 바로 커밋할 때만 실행될 수 있습니다. 
 
-### 5.1.1. Streaming                        
++ 요청이 실패하면 트랙잭션은 롤백됩니다. 트랜잭션 키 존재 유무 결과를 확인하면 트랜잭션이 오픈되어 있는지 알 수 있습니다.  
 
-Responses from the HTTP API can be transmitted as JSON streams, resulting in                  better performance and lower memory overhead on the server side. To use                  streaming, supply the header `X-Stream: true` with each request.               
 
-| **   | In order to speed up queries in repeated scenarios, try not to use literals but replace them with parameters wherever possible.                                 This will let the server cache query plans.                                 See [Section 3.2.6, “Parameters”](https://neo4j.com/docs/developer-manual/3.3/cypher/syntax/parameters/) for more information. |
-| ---- | ---------------------------------------- |
-|      |                                          |
+#### 5.1.1. 스트리밍
 
-### 5.1.2. Begin and commit a transaction in one request                        
+HTTP API의 응답은 JSON 스트림으로 전송 될 수 있으므로 서버 측에서 성능이 향상되고 메모리 오버 헤드가 낮아집니다. 스트리밍을 사용하려면 ```X-Stream: true```헤더를 각 요청에 제공하면 됩니다. 
 
-If there is no need to keep a transaction open across multiple HTTP requests, you can begin a transaction,                  execute statements, and commit with just a single HTTP request.               
+반복되는 시나리오에서 쿼리 속도를 높히기 위해서는 리터럴을 사용하지 말고 가능한 변수로 대체하는 것이 좋습니다. 이렇게하면 서버가 쿼리 계획을 캐시 할 수 있습니다. 자세한 내용은 [섹션 3.2.6,"매개 변수"](/cypher/syntax.md)을 참조하십시오. 
 
-*Example request*
 
--   **POST**  http://localhost:7474/db/data/transaction/commit                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
+#### 5.1.2. 하나의 요청에서 트랜잭션 시작과 커밋 
+
+여러 HTTP 요청에서 트랜잭션을 오픈할 필요가 없다면 트랜잭션을 시작하고 명령어 실행을 단일 HTTP 요청으로 커밋할 수 있습니다. 
+
+*요청 예시*
+
++ **POST** localhost:7474/db/data/transaction/commit
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -38,17 +45,17 @@ If there is no need to keep a transaction open across multiple HTTP requests, yo
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
   "results" : [ {
     "columns" : [ "id(n)" ],
     "data" : [ {
-      "row" : [ 6 ],
+      "row" : [ 18 ],
       "meta" : [ null ]
     } ]
   } ],
@@ -56,15 +63,15 @@ If there is no need to keep a transaction open across multiple HTTP requests, yo
 }
 ```
 
-### 5.1.3. Execute multiple statements                        
+### 5.1.3. 다양한 명령어 실행  
 
-You can send multiple Cypher statements in the same request.                  The response will contain the result of each statement.               
+동일한 요청에서 여러 개의 사이퍼 문을 보낼 수 있습니다. 이 응답은 각 명령문 결과를 포함됩니다. 
 
-*Example request*
+*요청 예시*
 
--   **POST**  http://localhost:7474/db/data/transaction/commit                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
++ **POST** localhost:7474/db/data/transaction/commit
++ **Accept** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -79,19 +86,20 @@ You can send multiple Cypher statements in the same request.                  Th
     }
   } ]
 }
+
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
   "results" : [ {
     "columns" : [ "id(n)" ],
     "data" : [ {
-      "row" : [ 2 ],
+      "row" : [ 14 ],
       "meta" : [ null ]
     } ]
   }, {
@@ -101,7 +109,7 @@ You can send multiple Cypher statements in the same request.                  Th
         "name" : "My Node"
       } ],
       "meta" : [ {
-        "id" : 3,
+        "id" : 15,
         "type" : "node",
         "deleted" : false
       } ]
@@ -111,15 +119,16 @@ You can send multiple Cypher statements in the same request.                  Th
 }
 ```
 
-### 5.1.4. Begin a transaction                        
 
-You begin a new transaction by posting zero or more Cypher statements                  to the transaction endpoint. The server will respond with the result of                  your statements, as well as the location of your open transaction.               
+### 5.1.4. 트랜잭션 시작 
 
-*Example request*
+0개 이상의 사이퍼 문을 트랜잭션 앤드포인트에 추가하여 새 트랜잭션을 시작할 수 있습니다. 서버는 명령어 결과와 오픈 트랜잭션 위치로 응답합니다. 
 
--   **POST**  http://localhost:7474/db/data/transaction                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
+*요청 예시*
+
++ **POST** localhost:7474/db/data/transaction
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -134,11 +143,11 @@ You begin a new transaction by posting zero or more Cypher statements           
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **201:** Created                     
--   **Content-Type:** application/json                     
--   **Location:** http://localhost:7474/db/data/transaction/10                     
++ **201:** Created
++ **내용 유형:**: application/json
++ **위치:** localhost:7474/db/data/transaction/10
 
 ```
 {
@@ -150,28 +159,29 @@ You begin a new transaction by posting zero or more Cypher statements           
         "name" : "My Node"
       } ],
       "meta" : [ {
-        "id" : 10,
+        "id" : 22,
         "type" : "node",
         "deleted" : false
       } ]
     } ]
   } ],
   "transaction" : {
-    "expires" : "Thu, 26 Apr 2018 14:56:41 +0000"
+    "expires" : "Tue, 15 May 2018 11:01:09 +0000"
   },
   "errors" : [ ]
 }
 ```
 
-### 5.1.5. Execute statements in an open transaction                        
 
-Given that you have an open transaction, you can make a number of requests, each of which executes additional                  statements, and keeps the transaction open by resetting the transaction timeout.               
+### 5.1.5. 오픈 트랜잭션에서 명령문 실행
 
-*Example request*
+오픈 트랜잭션이 있을 때 추가 명령문을 실행하는 여러 요청을 수행하고 트랜잭션 타임아웃을 재설정해서 트랜잭션을 계속 열어둘 수 있습니다. 
+ 
+*요청 예시*
 
--   **POST**  http://localhost:7474/db/data/transaction/12                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
++ **POST** localhost:7474/db/data/transaction/12
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -181,10 +191,10 @@ Given that you have an open transaction, you can make a number of requests, each
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
@@ -194,30 +204,30 @@ Given that you have an open transaction, you can make a number of requests, each
     "data" : [ {
       "row" : [ { } ],
       "meta" : [ {
-        "id" : 11,
+        "id" : 23,
         "type" : "node",
         "deleted" : false
       } ]
     } ]
   } ],
   "transaction" : {
-    "expires" : "Thu, 26 Apr 2018 14:56:41 +0000"
+    "expires" : "Tue, 15 May 2018 11:01:09 +0000"
   },
   "errors" : [ ]
 }
 ```
 
-### 5.1.6. Reset transaction timeout of an open transaction                        
+### 5.1.6. 오픈 트랜잭션 타임아웃 재설정
 
-Every orphaned transaction is automatically expired after a period of inactivity.  This may be prevented                  by resetting the transaction timeout.               
+모든 고아 트랜잭션은 일정 기간 사용하지 않으면 자동으로 만료됩니다. 이 현상은 트랜잭션 타임 아웃을 재설정해서 막을 수 있습니다. 
 
-The timeout may be reset by sending a keep-alive request to the server that executes an empty list of statements.                  This request will reset the transaction timeout and return the new time at which the transaction will                  expire as an RFC1123 formatted timestamp value in the ``transaction'' section of the response.               
+타임아웃은 서버의 빈 목록을 실행하는 연결 유지 요청을 보내서 재설정할 수 있습니다. 이 요청은 트랜잭션 타임 아웃을 재설정하고 트랜잭션이 만료되는 새로운 시간을 응답의 트랜잭션 섹션에서 RFC1123 형식의 타임 스탬프 값으로 리턴합니다. 
+ 
+*요청 예시*
 
-*Example request*
-
--   **POST**  http://localhost:7474/db/data/transaction/2                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
++ **POST** localhost:7474/db/data/transaction/2
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -225,31 +235,31 @@ The timeout may be reset by sending a keep-alive request to the server that exec
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형** application/json
 
 ```
 {
   "commit" : "http://localhost:7474/db/data/transaction/2/commit",
   "results" : [ ],
   "transaction" : {
-    "expires" : "Thu, 26 Apr 2018 14:56:40 +0000"
+    "expires" : "Tue, 15 May 2018 11:01:07 +0000"
   },
   "errors" : [ ]
 }
 ```
 
-### 5.1.7. Commit an open transaction                        
+### 5.1.7. 오픈 트랜잭션 커밋
 
-Given you have an open transaction, you can send a commit request. Optionally, you submit additional statements                  along with the request that will be executed before committing the transaction.               
+오픈 트랜잭션이 있을 경우 커밋을 요청할 수 있습니다. 선택적으로 추가 명령문을 트랜잭션 커밋 전 실행될 요청과 함께 제출합니다.  
 
-*Example request*
+*요청 예시*
 
--   **POST**  http://localhost:7474/db/data/transaction/6/commit                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
++ **POST** localhost:7474/db/data/transaction/6/commit
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -259,17 +269,17 @@ Given you have an open transaction, you can send a commit request. Optionally, y
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
   "results" : [ {
     "columns" : [ "id(n)" ],
     "data" : [ {
-      "row" : [ 5 ],
+      "row" : [ 17 ],
       "meta" : [ null ]
     } ]
   } ],
@@ -277,19 +287,19 @@ Given you have an open transaction, you can send a commit request. Optionally, y
 }
 ```
 
-### 5.1.8. Rollback an open transaction                        
+### 5.1.8. 오픈 트랜잭션 롤백 
 
-Given that you have an open transaction, you can send a rollback request. The server will rollback the                  transaction. Any further statements trying to run in this transaction will fail immediately.               
+오픈 트랜잭션이 있을 경우 롤백 요청을 보낼 수 있습니다. 서버가 트랜잭션을 롤백할 것 입니다. 이 트랜잭션 내에서 실행하는 명령문은 바로 실패할 것 입니다. 
 
-*Example request*
+*요청 예시*
 
--   **DELETE**  http://localhost:7474/db/data/transaction/3                     
--   **Accept:** application/json; charset=UTF-8                     
++ **DELETE** localhost:7474/db/data/transaction/3
++ **Accept:** application/json; charset=UTF-8
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json; charset=UTF-8                     
++ **200:** OK
++ **내용 유형:** application/json; charset=UTF-8
 
 ```
 {
@@ -298,15 +308,16 @@ Given that you have an open transaction, you can send a rollback request. The se
 }
 ```
 
-### 5.1.9. Include query statistics                        
 
-By setting `includeStats` to `true` for a statement, query statistics will be returned for it.               
+### 5.1.9. 쿼리 통계 자료 포함 
 
-*Example request*
+명령문에서 ```includeStats```을 ```true```로 설정하면 쿼리 통계 자료가 리턴됩니다. 
 
--   **POST**  http://localhost:7474/db/data/transaction/commit                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
+*요청 예시*
+
++ **POST** localhost:7474/db/data/transaction/commit
++ **Accept:** application/json; charset=UTF-8
++ **내용 형식:** application/json
 
 ```
 {
@@ -317,17 +328,17 @@ By setting `includeStats` to `true` for a statement, query statistics will be re
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 형식:** application/json
 
 ```
 {
   "results" : [ {
     "columns" : [ "id(n)" ],
     "data" : [ {
-      "row" : [ 4 ],
+      "row" : [ 16 ],
       "meta" : [ null ]
     } ],
     "stats" : {
@@ -349,15 +360,16 @@ By setting `includeStats` to `true` for a statement, query statistics will be re
 }
 ```
 
-### 5.1.10. Return results in graph format                        
 
-If you want to understand the graph structure of nodes and relationships returned by your query,                  you can specify the "graph" results data format. For example, this is useful when you want to visualize the                  graph structure. The format collates all the nodes and relationships from all columns of the result,                  and also flattens collections of nodes and relationships, including paths.               
+### 5.1.10. 그래프 형식으로 결과 리턴 
 
-*Example request*
+쿼리에서 리턴된 그래프 구조의 노드와 관계를 알고싶다면 "그래프" 결과를 데이터 형식으로 구체화하면 됩니다. 예를들어서 이것은 그래프 구조를 시각화할 때 유용합니다. 형식은 결과의 모든 열에있는 노드와 관계를 조합하고 경로를 포함하여 노드와 관계의 모음을 플러시합니다. 
 
--   **POST**  http://localhost:7474/db/data/transaction/commit                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
+*요청 예시*
+
++ **POST** localhost:7474/db/data/transaction/commit
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** Content-Type: application/json
 
 ```
 {
@@ -368,10 +380,10 @@ If you want to understand the graph structure of nodes and relationships returne
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
@@ -394,67 +406,67 @@ If you want to understand the graph structure of nodes and relationships returne
         "spokes" : 32
       } ] ],
       "meta" : [ {
-        "id" : 7,
+        "id" : 19,
         "type" : "node",
         "deleted" : false
       }, [ {
-        "id" : 7,
+        "id" : 19,
         "type" : "node",
-        "deleted" : false
-      }, {
-        "id" : 0,
-        "type" : "relationship",
-        "deleted" : false
-      }, {
-        "id" : 8,
-        "type" : "node",
-        "deleted" : false
-      } ], [ {
-        "id" : 7,
-        "type" : "node",
-        "deleted" : false
-      }, {
-        "id" : 1,
-        "type" : "relationship",
         "deleted" : false
       }, {
         "id" : 9,
+        "type" : "relationship",
+        "deleted" : false
+      }, {
+        "id" : 20,
+        "type" : "node",
+        "deleted" : false
+      } ], [ {
+        "id" : 19,
+        "type" : "node",
+        "deleted" : false
+      }, {
+        "id" : 10,
+        "type" : "relationship",
+        "deleted" : false
+      }, {
+        "id" : 21,
         "type" : "node",
         "deleted" : false
       } ] ],
       "graph" : {
         "nodes" : [ {
-          "id" : "7",
+          "id" : "19",
           "labels" : [ "Bike" ],
           "properties" : {
             "weight" : 10
           }
         }, {
-          "id" : "8",
+          "id" : "20",
           "labels" : [ "Wheel" ],
           "properties" : {
             "spokes" : 3
           }
         }, {
-          "id" : "9",
+          "id" : "21",
           "labels" : [ "Wheel" ],
           "properties" : {
             "spokes" : 32
           }
         } ],
         "relationships" : [ {
-          "id" : "0",
+          "id" : "9",
           "type" : "HAS",
-          "startNode" : "7",
-          "endNode" : "8",
+          "startNode" : "19",
+          "endNode" : "20",
           "properties" : {
             "position" : 1
           }
         }, {
-          "id" : "1",
+          "id" : "10",
           "type" : "HAS",
-          "startNode" : "7",
-          "endNode" : "9",
+          "startNode" : "19",
+          "endNode" : "21",
           "properties" : {
             "position" : 2
           }
@@ -466,23 +478,23 @@ If you want to understand the graph structure of nodes and relationships returne
 }
 ```
 
-### 5.1.11. Handling errors                        
+### 5.1.11. 취급상 오류 
 
-The result of any request against the transaction endpoint is streamed back to the client.                  Therefore the server does not know whether the request will be successful or not when it sends the HTTP status                  code.               
+트랜잭션 앤드포인트에 요청된 결과는 클라이언트로 다시 스트리밍 됩니다. 그러므로 서버는 HTTP 상태 코드를 전송할 때 요청 성공 여부를 알지 못합니다.
 
-Because of this, all requests against the transactional endpoint will return 200 or 201 status code, regardless                  of whether statements were successfully executed. At the end of the response payload, the server includes a list                  of errors that occurred while executing statements. If this list is empty, the request completed successfully.               
+이런 이유로 트랜잭션 앤드포인트의 모든 요청은 명령문 실행 성공 여부와 관계 없이 200 또는 201 상태 코드를 리턴합니다. 응답 끝부분에서 서버는 명령문을 실행하는 동안 발생한 오류 리스트를 포함합니다. 리스트가 비어있다면, 요청은 성공적으로 완료될 것 입니다. 
 
-If any errors occur while executing statements, the server will roll back the transaction.
+명령문을 실행하는 동안 오류가 발생하면 서버는 트랜잭션을 롤백할 것 입니다. 
 
-In this example, we send the server an invalid statement to demonstrate error handling.
+이 예에서는 취급상 오류를 확인하기 위해서 서버에 잘못된 명령문을 보냅니다. 
 
-For more information on the status codes, see [Section A.1, “Neo4j Status Codes”](https://neo4j.com/docs/developer-manual/3.3/reference/status-codes/).               
+상태 코드 관련 더 많은 정보는 [섹션 A.1, "Neo4j 상태 코드"](https://neo4j.com/docs/developer-manual/3.4/reference/status-codes/)에서 확인할 수 있습니다. 
 
-*Example request*
+*요청 예시*
 
--   **POST**  http://localhost:7474/db/data/transaction/11/commit                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
++ **POST** localhost:7474/db/data/transaction/11/commit
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -492,10 +504,10 @@ For more information on the status codes, see [Section A.1, “Neo4j Status Code
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
@@ -507,15 +519,16 @@ For more information on the status codes, see [Section A.1, “Neo4j Status Code
 }
 ```
 
-### 5.1.12. Handling errors in an open transaction                        
 
-Whenever there is an error in a request the server will rollback the transaction.                  By inspecting the response for the presence/absence of the `transaction` key you can tell if the transaction is still open               
+### 5.1.12. 오픈 트랜잭션에서 에러 취급 
 
-*Example request*
+요청에 오류가 있을 때마다 서버는 트랜잭션을 롤백합니다. 트랜잭션 키의 존재 여부 응답을 검사하면 트랜잭션이 오픈되어 있는지 확인할 수 있습니다. 
 
--   **POST**  http://localhost:7474/db/data/transaction/9                     
--   **Accept:** application/json; charset=UTF-8                     
--   **Content-Type:** application/json                     
+*요청 예시*
+
++ **POST** localhost:7474/db/data/transaction/9
++ **Accept:** application/json; charset=UTF-8
++ **내용 유형:** application/json
 
 ```
 {
@@ -525,10 +538,10 @@ Whenever there is an error in a request the server will rollback the transaction
 }
 ```
 
-*Example response*
+*응답 예시*
 
--   **200:** OK                     
--   **Content-Type:** application/json                     
++ **200:** OK
++ **내용 유형:** application/json
 
 ```
 {
@@ -539,4 +552,7 @@ Whenever there is an error in a request the server will rollback the transaction
     "message" : "Invalid input 'T': expected <init> (line 1, column 1 (offset: 0))\n\"This is not a valid Cypher Statement.\"\n ^"
   } ]
 }
-```
+
+
+
+

@@ -33,7 +33,7 @@
 | ```Path```**         |           | ✔    |
 
 
-null 표시는 유형이 아니지만 값의 부재를 나타내는 위치 지정자입니다. Cypher에서 null을 사용하는 방법에 대한 많은 정보는, [섹션 3.2.14, “```null```과 작업”](./cypher/syntax.md)를 참조하십시오. 
+null 표시는 유형이 아니지만 값의 부재를 나타내는 위치 지정자입니다. 
 
 노드, 관계 및 경로는 원래 그래프 속성의 스냅샷으로 결과에 전송됩니다. 원본 IDs 속성이 이 스냅샷에 추가되어 있지만 클라이언트 복사본과는 별도로 삭제되거나 다른 방식으로 변경될 수 있는 기본 서버 속성에는 영구 링크가 유지되지 않습니다. 그래프 구조는 어플리케이션 내용에 따라 변수가 참조되거나 값으로 보내는 여부에 따라 다르기 때문에 매개 변수로 사용되지 않을 것 입니다. 그리고 Cypher은 이 값을 나타내는 메커니즘을 제공하지 않습니다. 동일한 기능은 ID또는 참조 또는 값 별 전달 속성의 값 별 추출된 앱을 전달해서 이용할수 있습니다. 
 
@@ -41,7 +41,7 @@ Neo4j 드라이버는 아래 테이블에 묘사된 것 같이 유형을 모국�
 
 **예시 4.24. Neo4j 유형을 모국어로 맵핑**
 
-+ [C#](./cypher-values/#tabbed-example-0-dotnet)
++ C#
 
 | Neo4j 유형          | .NET 유형                         |
 | ------------------- | --------------------------------- |
@@ -67,7 +67,7 @@ Neo4j 드라이버는 아래 테이블에 묘사된 것 같이 유형을 모국�
 
 타임존 명은 Windows 시스템보다는 IANA 시스템을 준수합니다. 인바운드 변환은 유니코드 CLDR에 정의된 Windows-Olson 매핑을 사용하여 수행됩니다. 
 
-+ [Java](./cypher-values/#tabbed-example-0-java)
++ Java
 
  | Neo4j 유형          | Java 유형                 |
 | ------------------- | ------------------------- |
@@ -92,7 +92,7 @@ Neo4j 드라이버는 아래 테이블에 묘사된 것 같이 유형을 모국�
 
 변수로 전해진 ```Duration```이나 ```Period```은 항상 ```IsoDuration```으로 변환될 것 입니다. 
 
-+ [JavaScript](./cypher-values/#tabbed-example-0-javascript)
++ JavaScript
 
 | Neo4j 유형          | JavaScript 유형     |
 | ------------------- | ------------------- |
@@ -118,7 +118,7 @@ Neo4j 드라이버는 아래 테이블에 묘사된 것 같이 유형을 모국�
 
 JavaScript는 원시 정수 유형이 없으므로 커스튬 정의 타입이 제공됩니다. 편의상 이 기능을 설정에서 비활성화여 기본 Number 유형 대신 사용할 수 있습니다. 이 경우 정밀성이 떨어질 수 있다는 점에 유의하십시오. 
 
-+ [Python](./cypher-values/#tabbed-example-0-python)
++ Python
 
 | Neo4j 유형          | Python 2 유형            | Python 3 유형            |
 | ------------------- | ------------------------ | ------------------------ |
@@ -164,7 +164,7 @@ Phtyon 2에서, 변수로 전해진 ```str```은 UTF-8을 통해서 항상 ```un
 
 4.3. 결과 버퍼
 
-![드라이버 결과 버퍼](https://neo4j.com/docs/developer-manual/3.4/images/driver-result-buffer.svg) ----이미지 넣기!!
+![드라이버 결과 버퍼](https://neo4j.com/docs/developer-manual/3.4/images/driver-result-buffer.svg)
 
 대부분 드라이버는 결과 버퍼를 포함합니다. 결과에 대한 단계 포인트를 제공하고 결과 처리를 *페치* (네트워크에서 버퍼로 이동) 및 *소비* (버퍼에서 응용 프로그램으로 이동)로 나눕니다. 
 
@@ -178,7 +178,7 @@ Phtyon 2에서, 변수로 전해진 ```str```은 UTF-8을 통해서 항상 ```un
 
 **예시 4.25. 스트림 사용**
 
-+ [C#](./cypher-values/#tabbed-example-1-dotnet)
++ C#
 
 ```
 public List<string> GetPeople()
@@ -194,7 +194,7 @@ public List<string> GetPeople()
 }
 ```
 
-+ [Java](./cypher-values/#tabbed-example-1-java)
++ Java
 
 ```
 public List<String> getPeople()
@@ -224,7 +224,7 @@ private static List<String> matchPersonNodes( Transaction tx )
 }
 ```
 
-+ [JavaScript](./cypher-values/#tabbed-example-1-javascript)
++ JavaScript
 
 ```
 const session = driver.session();
@@ -247,7 +247,7 @@ result.subscribe({
 });
 ```
 
-+ [Python](./cypher-values/#tabbed-example-1-python)
++ Python
 
 ```
 def get_people(self):
@@ -267,7 +267,7 @@ def match_person_nodes(tx):
 
 예시 4.26. 추가 처리를 위한 결과 유지 
  
-+ [C#](./cypher-values/#tabbed-example-2-dotnet)
++ C#
 
 ```
 public int AddEmployees(string companyName)
@@ -287,7 +287,7 @@ public int AddEmployees(string companyName)
 }
 ```
 
-+ [Java](./cypher-values/#tabbed-example-2-java)
++ Java
 
 ```
 public int addEmployees( final String companyName )
@@ -329,7 +329,7 @@ private static List<Record> matchPersonNodes( Transaction tx )
 }
 ```
 
-+ [JavaScript](./cypher-values/#tabbed-example-2-javascript)
++ JavaScript
 
 ```
 const session = driver.session();
@@ -360,7 +360,7 @@ addEmployeesPromise.then(employeesCreated => {
   console.log('Created ' + employeesCreated + ' employees');
 ```
 
-+ [Python](./cypher-values/#tabbed-example-2-python)
++ Python
 
 ```
 def add_employees(self, company_name):
@@ -391,4 +391,4 @@ def match_person_nodes(tx):
 쿼리 통계, 타이밍 및 서버 정보와 같은 추가 정보는 쿼리 결과 요약에서 얻을 수 있습니다. 만약 이 상세 정보가 전체 결과가 사용되기 전에 억세스 된다면, 나머지 결과는 버퍼링 됩니다. 
 
 
-[특정 언어 드라이버  API 문서](./get-started/#driver-api-docs)를 참조하십시오.
+[특정 언어 드라이버  API 문서](./get-started.md)를 참조하십시오.

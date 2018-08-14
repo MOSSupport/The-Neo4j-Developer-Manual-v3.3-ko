@@ -5,13 +5,13 @@
 
 ```
 
-- [절](./keyword-glossary/#glossary-clauses)
-- [연산자](./keyword-glossary/#glossary-operators)
-- [함수](./keyword-glossary/#glossary-functions)
-- [표현](./keyword-glossary/#glossary-expressions)
-- [사이퍼 쿼리 옵션](./keyword-glossary/#glossary-cypher-query-options)
+- 절
+- 연산자
+- 함수
+- 표현
+- 사이퍼 쿼리 옵션
 
-### 3.9.1. [절](https://neo4j.com/docs/developer-manual/3.4/cypher/clauses/)
+### 3.9.1. 절
 
 | 절                                                           | 범위          | 설명                                                         |
 | ------------------------------------------------------------ | ------------- | ------------------------------------------------------------ |
